@@ -31,6 +31,14 @@ export const news: NewsItem[] = [
   {
     date: { en: 'Jun. 2026', zh: '2026.06' },
     html: {
+      en: '<a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener">Hyper-Extract</a> ranked <span class="hl">#2 on GitHub Trending</span> worldwide.',
+      zh: '<a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener">Hyper-Extract</a> 登上 <span class="hl">GitHub 趋势榜全球第二</span>。',
+    },
+    badge: 'Trending #2',
+  },
+  {
+    date: { en: 'Jun. 2026', zh: '2026.06' },
+    html: {
       en: 'Paper <span class="hl">"How Powerful are Hypergraph Neural Networks?"</span> accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '论文<span class="hl">《How Powerful are Hypergraph Neural Networks?》</span>被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
