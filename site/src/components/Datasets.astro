@@ -1,0 +1,157 @@
+---
+import SectionHead from './SectionHead.astro';
+import { datasets } from '../data/datasets';
+import { sections, t, type Lang } from '../data/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const sec = sections.datasets;
+---
+
+<section id={sec.id}>
+  <SectionHead title={sec.title} hint={sec.hint} lang={lang} />
+
+  <div class="ds-grid">
+    {datasets.map((ds) => (
+      <div class="card ds-card">
+        <div class="oss-name">
+          {ds.name}
+          {ds.badges.map((badge) => <span class="oss-badge">{t(badge, lang)}</span>)}
+        </div>
+        <div class="oss-desc">{t(ds.desc, lang)}</div>
+        {ds.image && (
+          <div class="ds-thumb">
+            <img src={ds.image.src} alt={ds.image.alt} loading="lazy" />
+          </div>
+        )}
+        {ds.figures && (
+          <div class="ds-imgs">
+            {ds.figures.map((fig) => (
+              <figure class="ds-fig">
+                <img src={fig.src} alt={fig.caption} loading="lazy" />
+                <figcaption>{fig.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+        {ds.items && (
+          <div class="news-list">
+            {ds.items.map((item) => (
+              <div class="ds-item">
+                <span class="ds-item-name">{item.name}</span>
+                <span class="ds-item-desc">{t(item.desc, lang)}</span>
+                <span class="ds-item-size">{item.size}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        <div class="oss-links">
+          {ds.links.map((link) => (
+            <a class="pub-link" href={link.href} target="_blank" rel="noopener">{t(link.label, lang)}</a>
+          ))}
+        </div>
+        <div class="oss-meta">{ds.meta}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  /* ---------- generic card ---------- */
+  .card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 24px 26px;
+    border: 1px solid transparent;
+    background-image: linear-gradient(var(--card), var(--card)),
+      linear-gradient(150deg, rgba(124, 58, 237, .7), rgba(212, 175, 106, .5) 55%, rgba(124, 58, 237, .4));
+    background-origin: border-box; background-clip: padding-box, border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .45), 0 0 18px rgba(124, 58, 237, .12);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, .55), 0 0 30px rgba(124, 58, 237, .26);
+  }
+
+  /* ---------- shared name/desc/links/meta (same look as Open Source) ---------- */
+  .oss-name {
+    font-family: var(--serif); font-size: 18px; font-weight: 700; color: #F4EFFA; letter-spacing: .02em;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .oss-badge {
+    font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold-bright); border: 1px solid rgba(212, 175, 106, .45);
+    border-radius: 999px; padding: 2px 9px; background: rgba(212, 175, 106, .08);
+  }
+  .oss-desc { font-size: 13.5px; line-height: 1.65; color: #C4BBD8; }
+  .oss-links { display: flex; gap: 14px; flex-wrap: wrap; border-top: 1px solid rgba(124, 58, 237, .18); padding-top: 10px; }
+  .oss-meta { font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing: .05em; }
+  .pub-link {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em;
+    color: var(--muted); text-decoration: none;
+    border-bottom: 1px dashed rgba(212, 175, 106, .35);
+    transition: color .2s, border-color .2s;
+  }
+  .pub-link:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+  .news-list { display: flex; flex-direction: column; gap: 11px; }
+
+  /* ---------- datasets ---------- */
+  .ds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+  .ds-card { display: flex; flex-direction: column; gap: 10px; }
+  .ds-thumb {
+    border-radius: 12px; overflow: hidden;
+    border: 1px solid rgba(124, 58, 237, .25);
+    background: var(--card-2);
+    margin-top: auto; /* spacer: pin media + footer to the card bottom */
+  }
+  .ds-thumb img {
+    width: 100%; display: block;
+    filter: brightness(.88) saturate(1.05);
+    transition: transform .5s ease, filter .5s ease;
+  }
+  .ds-card:hover .ds-thumb img { transform: scale(1.03); filter: brightness(1) saturate(1.1); }
+  .ds-imgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: auto; /* spacer: pin gallery + list + footer to the card bottom */ }
+  .ds-fig { border-radius: 12px; overflow: hidden; border: 1px solid rgba(124, 58, 237, .25); background: var(--card-2); }
+  .ds-fig img {
+    width: 100%; display: block;
+    filter: brightness(.88) saturate(1.05);
+    transition: transform .5s ease, filter .5s ease;
+  }
+  .ds-fig figcaption {
+    padding: 6px 8px; font-family: var(--mono); font-size: 10.5px; color: var(--faint);
+    letter-spacing: .04em; text-align: center; border-top: 1px solid rgba(124, 58, 237, .18);
+  }
+  .ds-card:hover .ds-fig img { filter: brightness(1) saturate(1.1); }
+  .ds-fig img:hover { transform: scale(1.05); }
+  .ds-item {
+    display: flex; align-items: baseline; gap: 12px;
+    background: var(--card-2);
+    border-radius: 12px; padding: 11px 16px;
+    border: 1px solid rgba(124, 58, 237, .18);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .ds-item:hover {
+    transform: translateX(5px);
+    border-color: rgba(212, 175, 106, .4);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .45), 0 0 16px rgba(124, 58, 237, .18);
+  }
+  .ds-item-name { font-family: var(--mono); font-size: 12.5px; color: var(--gold); letter-spacing: .03em; white-space: nowrap; }
+  .ds-item-desc { font-size: 13px; line-height: 1.6; color: #D5CDE6; }
+  .ds-item-size {
+    margin-left: auto; flex: 0 0 auto;
+    font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: .05em; white-space: nowrap;
+  }
+
+  @media (max-width: 900px) {
+    .ds-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 820px) {
+    .ds-item { flex-wrap: wrap; gap: 4px 12px; }
+    .ds-item-size { margin-left: 0; }
+  }
+</style>

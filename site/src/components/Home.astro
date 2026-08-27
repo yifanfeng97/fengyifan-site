@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from './Hero.astro';
+import SectionHead from './SectionHead.astro';
+import News from './News.astro';
+import PapersGrid from './PapersGrid.astro';
+
+import { pageTitles, sections, t, type Lang } from '../data/ui';
+import { selectedPapers } from '../data/papers';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<Base lang={lang} page="home" title={t(pageTitles.home, lang)}>
+  <Hero lang={lang} />
+
+  <main class="wrap">
+    <News lang={lang} />
+
+    <section id={sections.publications.id}>
+      <SectionHead title={sections.publications.title} hint={sections.publications.hint} lang={lang} />
+      <PapersGrid papers={selectedPapers} lang={lang} />
+      <div class="view-all">
+        <a href={`/${lang}/research/`}>{t(sections.viewAll, lang)}</a>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .view-all { display: flex; justify-content: center; margin-top: 26px; }
+  .view-all a {
+    font-family: var(--serif); font-size: 15px; font-weight: 700; letter-spacing: .06em;
+    color: var(--gold-bright); text-decoration: none;
+    border: 1px solid rgba(212, 175, 106, .45); border-radius: 999px;
+    padding: 10px 26px; background: rgba(212, 175, 106, .06);
+    transition: all .25s ease;
+  }
+  .view-all a:hover {
+    background: rgba(212, 175, 106, .14);
+    box-shadow: 0 0 18px rgba(212, 175, 106, .25);
+    transform: translateY(-1px);
+  }
+</style>

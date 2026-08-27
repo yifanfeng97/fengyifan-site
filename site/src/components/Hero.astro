@@ -1,0 +1,181 @@
+---
+import { profile } from '../data/profile';
+import { education } from '../data/education';
+import { sections, t, type Lang } from '../data/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const icons: Record<string, string> = {
+  scholar:
+    '<svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d="M12 3 1 9l4 2.18v6.32C5 19.05 8.13 21 12 21s7-1.95 7-3.5v-6.32L21 9 12 3zm0 2.26L18.74 9 12 12.74 5.26 9 12 5.26zM7 12.6l5 2.5 5-2.5v4.4c0 .84-2.4 2-5 2s-5-1.16-5-2v-4.4z"/></svg>',
+  github:
+    '<svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>',
+  email:
+    '<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>',
+};
+---
+
+<header class="hero wrap" id="top">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="avatar-ring">
+        <div class="avatar-inner">
+          <img src={profile.avatar} alt={t(profile.name, lang)} />
+        </div>
+      </div>
+
+      <h1 class="name">{t(profile.name, lang)}</h1>
+
+      <div class="title-line">{t(profile.title, lang)}</div>
+      <div class="affil">{t(profile.affiliation, lang)}</div>
+
+      <div class="tags">
+        {profile.tags.map((tag) => <span class="tag">{t(tag, lang)}</span>)}
+      </div>
+
+      <div class="socials">
+        {profile.socials.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener" title={s.label} aria-label={s.label} set:html={icons[s.icon]} />
+        ))}
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="edu-label">{t(sections.education.title, lang)}</div>
+      <div class="edu-grid">
+        {education.map((item) => (
+          <div class="edu-item">
+            <div class="tl-year">{t(item.years, lang)}</div>
+            <div class="tl-name">{t(item.name, lang)}</div>
+            {item.sub && <div class="tl-sub">{t(item.sub, lang)}</div>}
+          </div>
+        ))}
+      </div>
+
+      <div class="bio-label">{t(sections.about, lang)}</div>
+      <p class="bio">{t(profile.bio, lang)}</p>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* ---------- hero: two-column (identity + education | bio) ---------- */
+  .hero {
+    min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 90px 0 60px;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: minmax(340px, 400px) 1fr;
+    gap: 30px 64px; align-items: center;
+  }
+  .hero-left { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+  .avatar-ring {
+    width: 210px; height: 210px; border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(140deg, var(--gold-bright), #8a6a34 55%, var(--gold-bright));
+    box-shadow: 0 0 0 1px rgba(212, 175, 106, .25), 0 0 45px rgba(212, 175, 106, .18), 0 0 90px rgba(124, 58, 237, .22);
+  }
+  .avatar-inner {
+    width: 100%; height: 100%; border-radius: 50%;
+    border: 3px solid var(--gold);
+    padding: 5px; background: var(--bg);
+  }
+  .avatar-inner img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block;
+    filter: saturate(.95);
+  }
+  h1.name {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4vw, 48px);
+    font-weight: 700; letter-spacing: .01em; line-height: 1.1;
+    margin-top: 26px;
+    background: linear-gradient(180deg, #fff 30%, #CFC6E4);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .title-line {
+    margin-top: 12px;
+    font-family: var(--serif); font-style: italic;
+    color: var(--gold); font-size: clamp(14px, 1.6vw, 16px); letter-spacing: .06em;
+  }
+  .affil {
+    margin-top: 7px; color: var(--muted); font-size: 14px; letter-spacing: .03em;
+  }
+  .tags { margin-top: 18px; display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
+  .tag {
+    font-size: 12.5px; letter-spacing: .04em; color: #C9B8F0;
+    border: 1px solid rgba(124, 58, 237, .45); border-radius: 999px;
+    padding: 5px 15px; background: rgba(124, 58, 237, .08);
+    transition: all .25s ease;
+  }
+  .tag:hover { background: rgba(124, 58, 237, .22); box-shadow: 0 0 14px rgba(124, 58, 237, .3); transform: translateY(-1px); }
+  .socials { margin-top: 22px; display: flex; justify-content: center; gap: 14px; }
+  .socials a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; border-radius: 50%;
+    color: var(--muted);
+    border: 1px solid rgba(124, 58, 237, .45);
+    background: rgba(124, 58, 237, .08);
+    transition: all .25s ease;
+  }
+  .socials a:hover {
+    color: var(--gold-bright); border-color: rgba(212, 175, 106, .55);
+    background: rgba(212, 175, 106, .1);
+    box-shadow: 0 0 16px rgba(124, 58, 237, .35);
+  }
+
+  /* ---------- education atop the right column ---------- */
+  .edu-label {
+    font-family: var(--serif); font-size: 21px; font-weight: 700; letter-spacing: .14em;
+    color: var(--gold); text-transform: uppercase;
+    display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+  }
+  .edu-label::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(212, 175, 106, .5), rgba(124, 58, 237, .3), transparent);
+  }
+  .edu-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px 26px;
+    margin-bottom: 32px;
+  }
+  .edu-item {
+    border-left: 2px solid var(--gold); padding-left: 13px;
+    transition: border-color .25s ease;
+  }
+  .edu-item:hover { border-color: var(--gold-bright); }
+  .tl-year {
+    font-family: var(--mono); font-size: 11.5px; color: var(--gold); letter-spacing: .05em;
+  }
+  .tl-name {
+    font-family: var(--serif); font-size: 13.5px; font-weight: 700; color: #EFE9F8; margin-top: 2px; line-height: 1.45;
+  }
+  .tl-sub { font-size: 11px; color: var(--faint); margin-top: 2px; }
+
+  /* ---------- bio on the right ---------- */
+  .hero-right { min-width: 0; }
+  .bio-label {
+    font-family: var(--serif); font-size: 21px; font-weight: 700; letter-spacing: .14em;
+    color: var(--gold); text-transform: uppercase;
+    display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+  }
+  .bio-label::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(212, 175, 106, .5), rgba(124, 58, 237, .3), transparent);
+  }
+  .bio {
+    color: #C4BBD8; font-size: 15.5px; line-height: 1.9;
+    text-align: justify;
+  }
+
+  @media (max-width: 900px) {
+    .hero { padding-top: 76px; min-height: auto; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .bio { text-align: left; }
+  }
+</style>

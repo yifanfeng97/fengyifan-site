@@ -1,0 +1,91 @@
+---
+import { t, type Lang } from '../data/ui';
+import type { Paper } from '../data/papers';
+
+interface Props {
+  paper: Paper;
+  lang: Lang;
+}
+
+const { paper, lang } = Astro.props;
+---
+
+<article class="pub-card">
+  <div class="pub-thumb placeholder"><span>{paper.thumb}</span></div>
+  <div class="pub-body">
+    <div class="pub-title">{paper.title}</div>
+    <div class="pub-authors" set:html={paper.authorsHtml} />
+    <div class="pub-meta">
+      <span class:list={['venue-badge', { gold: paper.venueGold }]}>{paper.venue}</span>
+      {paper.note && <span class="pub-note">{t(paper.note, lang)}</span>}
+    </div>
+    {paper.links.length > 0 && (
+      <div class="pub-links">
+        {paper.links.map((link) => (
+          <a class="pub-link" href={link.href} target="_blank" rel="noopener">{t(link.label, lang)}</a>
+        ))}
+      </div>
+    )}
+  </div>
+</article>
+
+<style>
+  .pub-card {
+    background: var(--card);
+    border-radius: 18px; overflow: hidden;
+    border: 1px solid transparent;
+    background-image: linear-gradient(var(--card), var(--card)),
+      linear-gradient(150deg, rgba(124, 58, 237, .7), rgba(212, 175, 106, .5) 55%, rgba(124, 58, 237, .4));
+    background-origin: border-box; background-clip: padding-box, border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .45), 0 0 18px rgba(124, 58, 237, .12);
+    transition: transform .3s ease, box-shadow .3s ease;
+    display: flex; flex-direction: column;
+  }
+  .pub-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, .55), 0 0 32px rgba(124, 58, 237, .3);
+  }
+  .pub-thumb {
+    height: 168px; position: relative; overflow: hidden;
+    border-bottom: 1px solid rgba(124, 58, 237, .25);
+  }
+  .pub-thumb.placeholder {
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #2A1F45 0%, var(--purple-deep) 55%, #1A1430 100%);
+  }
+  .pub-thumb.placeholder::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(420px 200px at 70% 20%, rgba(212, 175, 106, .16), transparent 60%);
+  }
+  .pub-thumb.placeholder span {
+    font-family: var(--serif); font-size: 30px; font-weight: 700; letter-spacing: .04em;
+    color: rgba(255, 255, 255, .9); text-shadow: 0 2px 18px rgba(0, 0, 0, .5);
+    z-index: 1;
+  }
+  .pub-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .pub-title {
+    font-family: var(--serif); font-size: 17px; font-weight: 700; line-height: 1.45; color: #F2EDFA;
+  }
+  .pub-authors { font-size: 12.5px; color: var(--faint); letter-spacing: .02em; }
+  .pub-authors :global(b) { color: #C9B8F0; font-weight: 600; }
+  .pub-meta { margin-top: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .venue-badge {
+    font-size: 11px; font-weight: 700; letter-spacing: .08em;
+    color: #fff; background: linear-gradient(135deg, var(--purple), var(--purple-deep));
+    border-radius: 8px; padding: 4px 11px;
+    box-shadow: 0 0 12px rgba(124, 58, 237, .35);
+  }
+  .venue-badge.gold {
+    background: linear-gradient(135deg, #B08A45, #8a6a34);
+    box-shadow: 0 0 12px rgba(212, 175, 106, .3);
+  }
+  .pub-note { font-size: 11.5px; color: var(--muted); font-style: italic; }
+  .pub-links { display: flex; gap: 14px; border-top: 1px solid rgba(124, 58, 237, .18); padding-top: 10px; }
+  .pub-link {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em;
+    color: var(--muted); text-decoration: none;
+    border-bottom: 1px dashed rgba(212, 175, 106, .35);
+    transition: color .2s, border-color .2s;
+  }
+  .pub-link:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+</style>

@@ -1,0 +1,25 @@
+---
+import PaperCard from './PaperCard.astro';
+import type { Paper } from '../data/papers';
+import type { Lang } from '../data/ui';
+
+interface Props {
+  papers: Paper[];
+  lang: Lang;
+}
+
+const { papers, lang } = Astro.props;
+---
+
+<div class="pubs-grid">
+  {papers.map((paper) => <PaperCard paper={paper} lang={lang} />)}
+</div>
+
+<style>
+  /* ---------- publications ---------- */
+  .pubs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  @media (max-width: 900px) {
+    .pubs-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+import SectionHead from './SectionHead.astro';
+import { opensource } from '../data/opensource';
+import { sections, t, type Lang } from '../data/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const sec = sections.opensource;
+---
+
+<section id={sec.id}>
+  <SectionHead title={sec.title} hint={sec.hint} lang={lang} />
+
+  <div class="oss-grid">
+    {opensource.map((project) => (
+      <div class="card oss-card">
+        <div class="oss-name">
+          {project.href ? (
+            <a href={project.href} target="_blank" rel="noopener">{project.name}</a>
+          ) : (
+            project.name
+          )}
+          {project.badges.map((badge) => <span class="oss-badge">{t(badge, lang)}</span>)}
+        </div>
+        <div class="oss-desc">{t(project.desc, lang)}</div>
+        {project.video && (
+          <video class="oss-video" src={project.video} loop muted autoplay playsinline />
+        )}
+        {project.image && (
+          <img class="oss-video" src={project.image} alt={`${project.name} overview`} loading="lazy" />
+        )}
+        <div class="oss-links">
+          {project.links.map((link) => (
+            <a class="pub-link" href={link.href} target="_blank" rel="noopener">{t(link.label, lang)}</a>
+          ))}
+        </div>
+        <div class="oss-meta">{project.meta}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  /* ---------- generic card ---------- */
+  .card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 24px 26px;
+    border: 1px solid transparent;
+    background-image: linear-gradient(var(--card), var(--card)),
+      linear-gradient(150deg, rgba(124, 58, 237, .7), rgba(212, 175, 106, .5) 55%, rgba(124, 58, 237, .4));
+    background-origin: border-box; background-clip: padding-box, border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .45), 0 0 18px rgba(124, 58, 237, .12);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, .55), 0 0 30px rgba(124, 58, 237, .26);
+  }
+
+  /* ---------- open source ---------- */
+  .oss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+  .oss-card { display: flex; flex-direction: column; gap: 10px; }
+  .oss-name {
+    font-family: var(--serif); font-size: 18px; font-weight: 700; color: #F4EFFA; letter-spacing: .02em;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .oss-name a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(212, 175, 106, .4); transition: color .2s, border-color .2s; }
+  .oss-name a:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+  .oss-badge {
+    font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold-bright); border: 1px solid rgba(212, 175, 106, .45);
+    border-radius: 999px; padding: 2px 9px; background: rgba(212, 175, 106, .08);
+  }
+  .oss-desc { font-size: 13.5px; line-height: 1.65; color: #C4BBD8; }
+  .oss-video {
+    width: 100%; display: block; border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, .4);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, .4);
+    background: #000;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-top: auto; /* spacer: pin media + footer to the card bottom */
+  }
+  .oss-links { display: flex; gap: 14px; flex-wrap: wrap; border-top: 1px solid rgba(124, 58, 237, .18); padding-top: 10px; }
+  .oss-meta { font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing: .05em; }
+
+  .pub-link {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em;
+    color: var(--muted); text-decoration: none;
+    border-bottom: 1px dashed rgba(212, 175, 106, .35);
+    transition: color .2s, border-color .2s;
+  }
+  .pub-link:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+
+  @media (max-width: 900px) {
+    .oss-grid { grid-template-columns: 1fr; }
+  }
+</style>

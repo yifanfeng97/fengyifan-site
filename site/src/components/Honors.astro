@@ -1,0 +1,132 @@
+---
+import SectionHead from './SectionHead.astro';
+import { awards } from '../data/awards';
+import { sections, t, type Lang } from '../data/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const sec = sections.honors;
+
+const VISIBLE_COUNT = 5;
+
+// Group by year (last 4 chars of the display string, e.g. "2024 — 2025" → 2025).
+const groups: { year: string; items: typeof awards }[] = [];
+for (const item of awards) {
+  const year = item.year.slice(-4);
+  const g = groups[groups.length - 1];
+  if (g && g.year === year) g.items.push(item);
+  else groups.push({ year, items: [item] });
+}
+
+let idx = -1;
+---
+
+<section id={sec.id}>
+  <SectionHead title={sec.title} hint={sec.hint} lang={lang} />
+
+  <div class="honors" data-collapsed>
+    {groups.map((g) => {
+      const groupStart = idx + 1;
+      return (
+        <div class:list={['honor-year', { 'year-extra': groupStart >= VISIBLE_COUNT }]}>
+          <div class="year-label">{g.year}</div>
+          <div class="year-items">
+            {g.items.map((item) => {
+              idx += 1;
+              return (
+                <div class:list={['honor-item', { 'honor-extra': idx >= VISIBLE_COUNT }]}>
+                  <span class="honor-date">{item.year}</span>
+                  <span class="honor-name">
+                    {t(item.name, lang)}
+                    {item.sub && <span class="honor-sub">（{t(item.sub, lang)}）</span>}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    })}
+
+    <button class="honors-toggle" type="button" aria-expanded="false">
+      <span class="more">{t(sections.expandAll, lang)} ({awards.length}) ↓</span>
+      <span class="less">{t(sections.collapse, lang)} ↑</span>
+    </button>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.honors[data-collapsed]').forEach((el) => {
+    const btn = el.querySelector('.honors-toggle');
+    btn?.addEventListener('click', () => {
+      const collapsed = el.hasAttribute('data-collapsed');
+      el.toggleAttribute('data-collapsed', !collapsed);
+      btn.setAttribute('aria-expanded', String(collapsed));
+    });
+  });
+</script>
+
+<style>
+  /* ---------- year-grouped honors list (mirrors the news style) ---------- */
+  .honor-year {
+    display: grid; grid-template-columns: 88px 1fr; gap: 8px 26px;
+    padding: 18px 0 6px;
+  }
+  .honor-year + .honor-year { border-top: 1px solid rgba(124, 58, 237, .18); }
+  .year-label {
+    font-family: var(--serif); font-size: 26px; font-weight: 700;
+    color: var(--gold); line-height: 1.2; letter-spacing: .02em;
+    padding-top: 2px; user-select: none;
+  }
+
+  .year-items { display: flex; flex-direction: column; }
+  .honor-item {
+    display: flex; align-items: baseline; gap: 16px;
+    padding: 10px 4px;
+    border-bottom: 1px solid rgba(124, 58, 237, .1);
+  }
+  .honor-item:last-child { border-bottom: none; }
+  .honor-date {
+    flex: 0 0 96px;
+    font-family: var(--mono); font-size: 12.5px; color: var(--gold);
+    letter-spacing: .03em; opacity: .85;
+  }
+  .honor-name {
+    font-family: var(--serif); font-size: 14.5px; font-weight: 700;
+    color: #EFE9F8; line-height: 1.6;
+  }
+  .honor-sub { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--faint); }
+
+  /* ---------- expand / collapse ---------- */
+  .honor-extra { display: none; }
+  .honors:not([data-collapsed]) .honor-extra { display: flex; animation: honor-in .35s ease; }
+  .honors[data-collapsed] .honor-year.year-extra { display: none; }
+  .honors:not([data-collapsed]) .honor-year.year-extra { animation: honor-in .35s ease; }
+  @keyframes honor-in { from { opacity: 0; } to { opacity: 1; } }
+
+  .honors-toggle {
+    display: block; margin: 20px auto 0;
+    font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: .06em;
+    color: var(--gold-bright); cursor: pointer;
+    border: 1px solid rgba(212, 175, 106, .45); border-radius: 999px;
+    padding: 9px 24px; background: rgba(212, 175, 106, .06);
+    transition: background .25s ease, box-shadow .25s ease;
+  }
+  .honors-toggle:hover {
+    background: rgba(212, 175, 106, .14);
+    box-shadow: 0 0 18px rgba(212, 175, 106, .25);
+  }
+  .honors-toggle .less { display: none; }
+  .honors:not([data-collapsed]) .honors-toggle .more { display: none; }
+  .honors:not([data-collapsed]) .honors-toggle .less { display: inline; }
+
+  @media (max-width: 820px) {
+    .honor-year { grid-template-columns: 1fr; gap: 2px; padding: 14px 0 4px; }
+    .year-label { font-size: 20px; }
+    .honor-item { flex-wrap: wrap; gap: 4px 14px; }
+    .honor-date { flex-basis: 100%; }
+  }
+</style>

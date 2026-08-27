@@ -1,0 +1,27 @@
+---
+import { t, type I18n, type Lang } from '../data/ui';
+
+interface Props {
+  title: I18n;
+  hint: I18n;
+  lang: Lang;
+}
+
+const { title, hint, lang } = Astro.props;
+---
+
+<div class="sec-head">
+  <h2>{t(title, lang)}</h2>
+  <div class="rule"></div>
+  <span class="cn-hint">{t(hint, lang)}</span>
+</div>
+
+<style>
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+  .sec-head h2 {
+    font-family: var(--serif); font-size: clamp(26px, 3.4vw, 34px); font-weight: 700;
+    color: #F4EFFA; letter-spacing: .01em;
+  }
+  .sec-head .rule { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(124, 58, 237, .55), rgba(212, 175, 106, .35), transparent); }
+  .sec-head .cn-hint { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--faint); letter-spacing: .1em; white-space: nowrap; }
+</style>

@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from './SectionHead.astro';
+import PapersList from './PapersList.astro';
+import Honors from './Honors.astro';
+import Grants from './Grants.astro';
+
+import { pageTitles, sections, t, type Lang } from '../data/ui';
+import { firstAuthorPapers, coAuthorPapers, groupByYear } from '../data/papers';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const sec = sections.researchPublications;
+
+const allPapers = [...firstAuthorPapers, ...coAuthorPapers];
+const yearGroups = groupByYear(allPapers);
+---
+
+<Base lang={lang} page="research" title={t(pageTitles.research, lang)}>
+  <main class="wrap">
+    <Honors lang={lang} />
+    <Grants lang={lang} />
+
+    <section id={sec.id}>
+      <SectionHead title={sec.title} hint={sec.hint} lang={lang} />
+
+      <div class="pub-filter" role="group" aria-label="Filter papers">
+        <button type="button" class="active" data-filter="all">
+          {t(sec.filterAll, lang)} <span class="count">{allPapers.length}</span>
+        </button>
+        <button type="button" data-filter="first">
+          {t(sec.filterFirst, lang)} <span class="count">{firstAuthorPapers.length}</span>
+        </button>
+        <button type="button" data-filter="co">
+          {t(sec.filterCo, lang)} <span class="count">{coAuthorPapers.length}</span>
+        </button>
+      </div>
+
+      <div class="pub-list">
+        {yearGroups.map(([year, list]) => (
+          <div class="year-block">
+            <div class="year-head">
+              <h4 class="year-label">{year}</h4>
+              <div class="rule"></div>
+              <span class="hint">{list.length} {t(sec.papersUnit, lang)}</span>
+            </div>
+            <PapersList papers={list} lang={lang} />
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.pub-filter').forEach((filter) => {
+    const section = filter.closest('section');
+    if (!section) return;
+    const rows = section.querySelectorAll<HTMLElement>('.paper-row');
+    const blocks = section.querySelectorAll<HTMLElement>('.year-block');
+    filter.querySelectorAll<HTMLButtonElement>('button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filter.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b === btn));
+        const f = btn.dataset.filter;
+        rows.forEach((row) => {
+          const show = f === 'all' || (f === 'first' ? row.dataset.first === '1' : row.dataset.first === '0');
+          row.style.display = show ? '' : 'none';
+        });
+        // Hide year groups with no visible rows.
+        blocks.forEach((block) => {
+          const anyVisible = Array.from(block.querySelectorAll<HTMLElement>('.paper-row')).some(
+            (r) => r.style.display !== 'none'
+          );
+          block.style.display = anyVisible ? '' : 'none';
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .pub-filter {
+    display: inline-flex; gap: 2px; margin-bottom: 26px;
+    background: rgba(34, 28, 48, .85);
+    border: 1px solid rgba(124, 58, 237, .4);
+    border-radius: 999px; padding: 4px;
+    box-shadow: 0 0 14px rgba(124, 58, 237, .12);
+  }
+  .pub-filter button {
+    font-family: var(--serif); font-size: 13px; font-weight: 700; letter-spacing: .05em;
+    color: var(--muted); cursor: pointer;
+    border: none; background: transparent;
+    padding: 7px 18px; border-radius: 999px; transition: all .25s ease;
+    display: inline-flex; align-items: baseline; gap: 7px;
+  }
+  .pub-filter button:hover { color: #fff; }
+  .pub-filter button.active {
+    background: linear-gradient(135deg, var(--purple), var(--purple-deep));
+    color: #fff; box-shadow: 0 0 12px rgba(124, 58, 237, .5);
+  }
+  .pub-filter .count {
+    font-family: var(--mono); font-size: 11px; font-weight: 400;
+    color: var(--gold); opacity: .9;
+  }
+  .pub-filter button.active .count { color: var(--gold-bright); opacity: 1; }
+
+  .year-block { margin-bottom: 30px; }
+  .year-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .year-label {
+    font-family: var(--serif); font-size: 21px; font-weight: 700;
+    color: var(--gold); letter-spacing: .04em; white-space: nowrap;
+  }
+  .year-head .rule { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(124, 58, 237, .5), rgba(212, 175, 106, .3), transparent); }
+  .year-head .hint { font-family: var(--serif); font-style: italic; font-size: 11.5px; color: var(--faint); letter-spacing: .1em; white-space: nowrap; }
+</style>

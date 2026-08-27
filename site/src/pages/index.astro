@@ -1,0 +1,46 @@
+---
+// Root redirect: pick a language from the browser, fall back to manual links.
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yifan Feng · 丰一帆</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      background: #16121F;
+      color: #9A90B0;
+      font-family: Georgia, "Times New Roman", "Songti SC", "SimSun", serif;
+    }
+    a {
+      color: #D4AF6A;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212, 175, 106, .35);
+      margin: 0 10px;
+    }
+    a:hover { color: #E9C98A; border-color: #E9C98A; }
+  </style>
+  <script is:inline>
+    (function () {
+      var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      window.location.replace(lang.indexOf('zh') === 0 ? '/zh/' : '/en/');
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting… / 正在跳转…</p>
+  <p>
+    <a href="/en/" hreflang="en">English</a>
+    <a href="/zh/" hreflang="zh-CN">中文</a>
+  </p>
+</body>
+</html>

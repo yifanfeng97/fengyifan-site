@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import type { Lang, PageKey } from '../data/ui';
+
+interface Props {
+  lang: Lang;
+  page: PageKey;
+  title: string;
+}
+
+const { lang, page, title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+</head>
+<body>
+  <Nav lang={lang} page={page} />
+  <slot />
+  <Footer lang={lang} />
+</body>
+</html>

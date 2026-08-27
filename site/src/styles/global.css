@@ -1,0 +1,59 @@
+/* Global design tokens and base styles (1:1 from the design demo). */
+:root {
+  --bg: #16121F;
+  --card: #221C30;
+  --card-2: #1D1828;
+  --purple: #7C3AED;
+  --purple-deep: #6D28A8;
+  --gold: #D4AF6A;
+  --gold-band: #C9A959;
+  --gold-bright: #E9C98A;
+  --text: #EDE9F5;
+  --muted: #9A90B0;
+  --faint: #6B6280;
+  --serif: Georgia, "Times New Roman", "Songti SC", "SimSun", serif;
+  --sans: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --mono: Consolas, "SF Mono", "Courier New", monospace;
+  --nav-h: 60px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(900px 500px at 15% -5%, rgba(124, 58, 237, .14), transparent 60%),
+    radial-gradient(800px 500px at 90% 10%, rgba(212, 175, 106, .06), transparent 55%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(124, 58, 237, .45);
+  color: #fff;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Sections are rendered by the page that composes section components,
+   so this shared rule lives globally. */
+section {
+  padding: 56px 0 12px;
+  scroll-margin-top: calc(var(--nav-h) + 20px);
+}

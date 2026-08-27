@@ -1,0 +1,76 @@
+---
+import { navPages, t, type Lang, type PageKey } from '../data/ui';
+
+interface Props {
+  lang: Lang;
+  page: PageKey;
+}
+
+const { lang, page } = Astro.props;
+
+const currentPath = navPages.find((p) => p.key === page)?.path ?? '/';
+const hrefFor = (l: Lang, path: string) => `/${l}${path}`;
+---
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="nav-links">
+      {navPages.map((p) => (
+        <a href={hrefFor(lang, p.path)} class={p.key === page ? 'active' : ''} aria-current={p.key === page ? 'page' : undefined}>
+          {t(p.label, lang)}
+        </a>
+      ))}
+    </div>
+    <div class="lang-toggle">
+      <a href={hrefFor('zh', currentPath)} class={lang === 'zh' ? 'active' : ''} hreflang="zh-CN" aria-label="切换到中文">中</a>
+      <a href={hrefFor('en', currentPath)} class={lang === 'en' ? 'active' : ''} hreflang="en" aria-label="Switch to English">EN</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* ---------- sticky nav ---------- */
+  .topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(22, 18, 31, .72);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(124, 58, 237, .25);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, .35);
+  }
+  .topnav-inner {
+    max-width: 1040px; margin: 0 auto; padding: 0 28px;
+    height: var(--nav-h);
+    display: flex; align-items: center; gap: 22px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 6px; }
+  .nav-links a {
+    font-size: 15.5px; letter-spacing: .05em; color: #C9BFD9; text-decoration: none;
+    padding: 8px 16px; border-radius: 999px; transition: all .25s ease; white-space: nowrap;
+  }
+  .nav-links a:hover { color: #fff; background: rgba(124, 58, 237, .18); }
+  .nav-links a.active {
+    color: #fff;
+    background: rgba(124, 58, 237, .18);
+    box-shadow: inset 0 0 0 1px rgba(124, 58, 237, .35);
+  }
+  .lang-toggle {
+    display: flex; align-items: center; gap: 2px; margin-left: auto; flex: 0 0 auto;
+    background: rgba(34, 28, 48, .85);
+    border: 1px solid rgba(124, 58, 237, .4);
+    border-radius: 999px; padding: 3px;
+    box-shadow: 0 0 14px rgba(124, 58, 237, .12);
+  }
+  .lang-toggle a {
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600; letter-spacing: .04em;
+    color: var(--muted); text-decoration: none; cursor: pointer;
+    padding: 5px 13px; border-radius: 999px; transition: all .25s ease;
+  }
+  .lang-toggle a.active {
+    background: linear-gradient(135deg, var(--purple), var(--purple-deep));
+    color: #fff; box-shadow: 0 0 10px rgba(124, 58, 237, .5);
+  }
+
+  @media (max-width: 900px) {
+    .nav-links a { padding: 7px 10px; font-size: 13.5px; }
+  }
+</style>

@@ -1,30 +1,29 @@
-# ppage2022
+# fengyifan-site
 
-## Deploy the dist
-After commit and push, you can execute the command to update the "my" branch.
-```
-git subtree push --prefix dist origin my
-```
+Personal homepage of Yifan Feng — <https://fengyifan.site>
 
-## Project setup
-```
-yarn install
-```
+Built with [Astro](https://astro.build). All site code lives in [`site/`](site/);
+content is edited in the bilingual data files under `site/src/data/`.
 
-### Compiles and hot-reloads for development
+## Develop
+
 ```
-yarn serve
+cd site
+npm install
+npm run dev
 ```
 
-### Compiles and minifies for production
+## Build & preview
+
 ```
-yarn build
+cd site
+npm run build     # outputs to site/dist
+npm run preview
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+## Deploy
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Every push to `main` triggers the GitHub Actions workflow
+(`.github/workflows/deploy.yml`), which builds `site/` and publishes
+`site/dist` to the `gh-pages` branch. The custom domain is kept via
+`site/public/CNAME` (`fengyifan.site`).

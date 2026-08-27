@@ -1,0 +1,97 @@
+---
+import { t, type Lang } from '../data/ui';
+import type { Paper } from '../data/papers';
+
+interface Props {
+  papers: Paper[];
+  lang: Lang;
+}
+
+const { papers, lang } = Astro.props;
+
+// Gold IF tag on the right of the title line for high-impact journals.
+// TPAMI: 5-year IF 22.2. Nat. Commun.: 5-year IF 18.9.
+const ifTag = (p: Paper): string | null => {
+  if (p.venue.startsWith('IEEE TPAMI')) return 'IF 22.2';
+  if (p.venue.startsWith('Nature Communications')) return 'IF 18.9';
+  return null;
+};
+---
+
+<div class="papers-list">
+  {papers.map((p) => (
+    <article class="paper-row" data-first={p.first ? '1' : '0'}>
+      <div class:list={['paper-venue', { gold: p.venueGold }]}>{p.venue}</div>
+      <div class="paper-main">
+        <div class="paper-title-line">
+          <span class="paper-title">{p.title}</span>
+          {p.note && <span class="paper-note">{t(p.note, lang)}</span>}
+          {ifTag(p) && <span class="paper-if">{ifTag(p)}</span>}
+        </div>
+        <div class="paper-authors" set:html={p.authorsHtml} />
+        {p.links.length > 0 && (
+          <div class="paper-links">
+            {p.links.map((l) => <a href={l.href} target="_blank" rel="noopener">{t(l.label, lang)}</a>)}
+          </div>
+        )}
+      </div>
+    </article>
+  ))}
+</div>
+
+<style>
+  .papers-list { display: flex; flex-direction: column; }
+
+  .paper-row {
+    display: grid; grid-template-columns: 150px 1fr; gap: 8px 22px;
+    padding: 13px 4px;
+    border-bottom: 1px solid rgba(124, 58, 237, .1);
+  }
+  .paper-row:last-child { border-bottom: none; }
+
+  .paper-venue {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .03em;
+    color: #B79CFF; opacity: .9; padding-top: 3px; line-height: 1.5;
+  }
+  .paper-venue.gold { color: var(--gold); }
+
+  .paper-title-line {
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  }
+  .paper-title {
+    font-size: 14.5px; font-weight: 600; line-height: 1.55; color: #F4EFFA;
+  }
+  .paper-note {
+    flex: 0 0 auto;
+    font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold-bright); border: 1px solid rgba(212, 175, 106, .45);
+    border-radius: 999px; padding: 2px 9px; background: rgba(212, 175, 106, .08);
+  }
+  .paper-if {
+    flex: 0 0 auto; margin-left: auto;
+    font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .06em;
+    color: #1B1426; border-radius: 999px; padding: 2.5px 10px;
+    background: linear-gradient(135deg, var(--gold-bright), #B08A3E);
+    box-shadow: 0 0 10px rgba(212, 175, 106, .3);
+    align-self: baseline;
+  }
+  .paper-authors {
+    margin-top: 3px;
+    font-size: 12.5px; line-height: 1.55; color: var(--muted);
+  }
+  .paper-authors :global(b) { color: #E9E2F7; font-weight: 600; }
+
+  .paper-links { margin-top: 5px; display: flex; gap: 14px; }
+  .paper-links a {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .05em;
+    color: var(--gold-bright); text-decoration: none;
+    border-bottom: 1px dashed rgba(212, 175, 106, .35);
+    transition: color .2s, border-color .2s;
+  }
+  .paper-links a:hover { color: #fff; border-color: #fff; }
+
+  @media (max-width: 820px) {
+    .paper-row { grid-template-columns: 1fr; gap: 3px; padding: 12px 2px; }
+    .paper-venue { padding-top: 0; }
+  }
+</style>

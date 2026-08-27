@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import OpenSource from './OpenSource.astro';
+import Datasets from './Datasets.astro';
+
+import { pageTitles, t, type Lang } from '../data/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<Base lang={lang} page="resources" title={t(pageTitles.resources, lang)}>
+  <main class="wrap">
+    <OpenSource lang={lang} />
+    <Datasets lang={lang} />
+  </main>
+</Base>
