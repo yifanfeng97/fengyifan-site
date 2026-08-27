@@ -1,5 +1,5 @@
 ---
-// Root redirect: pick a language from the browser, fall back to manual links.
+// Root redirect: default to English, fall back to manual links.
 ---
 
 <!DOCTYPE html>
@@ -7,6 +7,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="refresh" content="0; url=/en/" />
   <title>Yifan Feng · 丰一帆</title>
   <style>
     body {
@@ -30,10 +31,7 @@
     a:hover { color: #E9C98A; border-color: #E9C98A; }
   </style>
   <script is:inline>
-    (function () {
-      var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-      window.location.replace(lang.indexOf('zh') === 0 ? '/zh/' : '/en/');
-    })();
+    window.location.replace('/en/');
   </script>
 </head>
 <body>
