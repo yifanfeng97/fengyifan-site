@@ -12,10 +12,10 @@ const sec = sections.honors;
 
 const VISIBLE_COUNT = 5;
 
-// Group by year (last 4 chars of the display string, e.g. "2024 — 2025" → 2025).
+// Group by year (first 4 chars; ranges like "2024 — 2025" group under 2024).
 const groups: { year: string; items: typeof awards }[] = [];
 for (const item of awards) {
-  const year = item.year.slice(-4);
+  const year = item.year.slice(0, 4);
   const g = groups[groups.length - 1];
   if (g && g.year === year) g.items.push(item);
   else groups.push({ year, items: [item] });
