@@ -33,7 +33,7 @@ export const firstAuthorPapers: Paper[] = [
     title:
       'Hyper-RAG: Combating LLM Hallucinations using Hypergraph-Driven Retrieval-Augmented Generation',
     authorsHtml:
-      '<b>Yifan Feng*</b>, Hao Hu*, Shihui Ying*, Xingliang Hou, Shiquan Liu, Mingyuan Yang, Junchang Li, Shaoyi Du, Nanning Zheng, Han Hu, Yue Gao',
+      '<b>Yifan Feng#</b>, Hao Hu#, Shihui Ying#, Xingliang Hou, Shiquan Liu, Mingyuan Yang, Junchang Li, Shaoyi Du, Nanning Zheng, Han Hu, Yue Gao',
     venue: 'Nature Communications · 2026',
     year: 2026,
     note: { en: 'Nature Portfolio Journal', zh: 'Nature 子刊' },
