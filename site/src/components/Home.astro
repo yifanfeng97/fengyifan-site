@@ -28,15 +28,10 @@ const { lang } = Astro.props;
         <a href={`/${lang}/research/`}>{t(sections.viewAll, lang)}</a>
       </div>
     </section>
-
-    <div class="visitor-globe">
-      <script is:inline type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=azVToEY-sK3G37ITNH8wIGDZ0aHgjo2I-tAooNjWzbA"></script>
-    </div>
   </main>
 </Base>
 
 <style>
-  .visitor-globe { display: flex; justify-content: center; margin-top: 48px; }
   .view-all { display: flex; justify-content: center; margin-top: 26px; }
   .view-all a {
     font-family: var(--serif); font-size: 15px; font-weight: 700; letter-spacing: .06em;
