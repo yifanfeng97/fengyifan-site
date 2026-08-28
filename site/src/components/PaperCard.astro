@@ -16,7 +16,7 @@ const { paper, lang } = Astro.props;
     <div class="pub-title">{paper.title}</div>
     <div class="pub-authors" set:html={paper.authorsHtml} />
     <div class="pub-meta">
-      <span class:list={['venue-badge', { gold: paper.venueGold }]}>{paper.venue}</span>
+      <span class="venue-badge">{paper.venue}</span>
       {paper.note && <span class="pub-note">{t(paper.note, lang)}</span>}
     </div>
     {paper.links.length > 0 && (
@@ -75,11 +75,7 @@ const { paper, lang } = Astro.props;
     border-radius: 8px; padding: 4px 11px;
     box-shadow: 0 0 12px rgba(124, 58, 237, .35);
   }
-  .venue-badge.gold {
-    background: linear-gradient(135deg, #B08A45, #8a6a34);
-    box-shadow: 0 0 12px rgba(212, 175, 106, .3);
-  }
-  .pub-note { font-size: 11.5px; color: var(--muted); font-style: italic; }
+  .pub-note { font-size: 11.5px; color: var(--gold-bright); font-style: italic; }
   .pub-links { display: flex; gap: 14px; border-top: 1px solid rgba(124, 58, 237, .18); padding-top: 10px; }
   .pub-link {
     font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em;

@@ -13,8 +13,6 @@ export interface Paper {
   venue: string;
   /** Publication year, used for year grouping on the research page. */
   year: number;
-  /** Gold venue badge (landmark paper) instead of purple. */
-  venueGold?: boolean;
   /** Optional badge line (Oral / award / citation count), only when documented. */
   note?: I18n;
   /** Short method name for the placeholder header, e.g. 'HGNN'. */
@@ -238,7 +236,6 @@ export const firstAuthorPapers: Paper[] = [
     authorsHtml: '<b>Yifan Feng</b>, Haoxuan You, Zizhao Zhang, Rongrong Ji, Yue Gao',
     venue: 'AAAI · 2019',
     year: 2019,
-    venueGold: true,
     note: { en: 'Oral · 3000+ Citations', zh: 'Oral · 谷歌学术引用 3000+' },
     thumb: 'HGNN',
     first: true,
