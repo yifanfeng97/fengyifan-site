@@ -31,8 +31,8 @@ export const news: NewsItem[] = [
   {
     date: { en: 'Jun. 2026', zh: '2026.06' },
     html: {
-      en: '<a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener">Hyper-Extract</a> ranked <span class="hl">#2 on GitHub Trending</span> worldwide.',
-      zh: '<a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener">Hyper-Extract</a> 登上 <span class="hl">GitHub 趋势榜全球第二</span>。',
+      en: '<a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener"><span class="hl">Hyper-Extract</span></a> ranked <span class="hl">#2 on GitHub Trending</span> worldwide.',
+      zh: '<a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener"><span class="hl">Hyper-Extract</span></a> 登上 <span class="hl">GitHub 趋势榜全球第二</span>。',
     },
     badge: 'Trending #2',
   },
