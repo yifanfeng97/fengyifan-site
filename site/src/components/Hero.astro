@@ -45,7 +45,7 @@ const icons: Record<string, string> = {
     </div>
 
     <div class="hero-right">
-      <div class="edu-label">{t(sections.education.title, lang)}</div>
+      <div class:list={['edu-label', { zh: lang === 'zh' }]}>{t(sections.education.title, lang)}</div>
       <div class="edu-grid">
         {education.map((item) => (
           <div class="edu-item">
@@ -56,8 +56,8 @@ const icons: Record<string, string> = {
         ))}
       </div>
 
-      <div class="bio-label">{t(sections.about, lang)}</div>
-      <p class="bio">{t(profile.bio, lang)}</p>
+      <div class:list={['bio-label', { zh: lang === 'zh' }]}>{t(sections.about, lang)}</div>
+      {profile.bio[lang].map((para) => <p class="bio">{para}</p>)}
     </div>
   </div>
 </header>
@@ -66,7 +66,8 @@ const icons: Record<string, string> = {
   /* ---------- hero: two-column (identity + education | bio) ---------- */
   .hero {
     min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
-    padding: 90px 0 60px;
+    /* only vertical padding here — horizontal padding comes from .wrap (mobile fix) */
+    padding-top: 90px; padding-bottom: 60px;
   }
   .hero-grid {
     display: grid; grid-template-columns: minmax(340px, 400px) 1fr;
@@ -135,13 +136,14 @@ const icons: Record<string, string> = {
     color: var(--gold); text-transform: uppercase;
     display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
   }
+  .edu-label.zh { font-size: 24px; letter-spacing: .2em; }
   .edu-label::after {
     content: ""; flex: 1; height: 1px;
     background: linear-gradient(90deg, rgba(212, 175, 106, .5), rgba(124, 58, 237, .3), transparent);
   }
   .edu-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 14px 26px;
-    margin-bottom: 32px;
+    margin-bottom: 44px;
   }
   .edu-item {
     border-left: 2px solid var(--gold); padding-left: 13px;
@@ -163,14 +165,18 @@ const icons: Record<string, string> = {
     color: var(--gold); text-transform: uppercase;
     display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
   }
+  .bio-label.zh { font-size: 24px; letter-spacing: .2em; }
   .bio-label::after {
     content: ""; flex: 1; height: 1px;
     background: linear-gradient(90deg, rgba(212, 175, 106, .5), rgba(124, 58, 237, .3), transparent);
   }
   .bio {
+    font-family: var(--serif);
     color: #C4BBD8; font-size: 15.5px; line-height: 1.9;
     text-align: justify;
   }
+  .bio + .bio { margin-top: 14px; }
+  .bio:last-of-type { color: #D8D0E8; }
 
   @media (max-width: 900px) {
     .hero { padding-top: 76px; min-height: auto; }
