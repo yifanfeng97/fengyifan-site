@@ -75,7 +75,7 @@ export const awards: AwardItem[] = [
     sub: { en: 'Student first', zh: '学生第一' },
   },
   {
-    year: '2024.01',
+    year: '2023.12',
     name: {
       en: 'Person of the Year 2023 (Research Innovation), School of Software, Tsinghua University',
       zh: '清华大学软件学院 2023 年度人物',

@@ -30,21 +30,16 @@ const sec = sections.grants;
 </section>
 
 <style>
-  /* ---------- grant rows as subtle cards, right edge aligned with the pub list ---------- */
-  .grant-rows { display: flex; flex-direction: column; gap: 10px; }
+  /* ---------- plain-text grants list (no cards, matches the site style) ---------- */
+  .grant-rows { display: flex; flex-direction: column; }
   .grant-row {
     display: flex; align-items: center; gap: 16px;
-    padding: 14px 18px;
-    background: var(--card-2);
-    border: 1px solid rgba(124, 58, 237, .18);
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
-    transition: border-color .25s ease, box-shadow .25s ease;
+    padding: 13px 4px;
+    border-bottom: 1px solid rgba(124, 58, 237, .12);
+    transition: border-color .25s ease;
   }
-  .grant-row:hover {
-    border-color: rgba(212, 175, 106, .4);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, .45), 0 0 16px rgba(124, 58, 237, .18);
-  }
+  .grant-row:last-child { border-bottom: none; }
+  .grant-row:hover { border-bottom-color: rgba(212, 175, 106, .4); }
   .grant-years {
     flex: 0 0 108px;
     font-family: var(--mono); font-size: 12.5px; color: var(--gold); letter-spacing: .03em;

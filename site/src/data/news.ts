@@ -277,7 +277,7 @@ export const news: NewsItem[] = [
     badge: 'ICLR',
   },
   {
-    date: { en: 'Jan. 2024', zh: '2024.01' },
+    date: { en: 'Dec. 2023', zh: '2023.12' },
     html: {
       en: 'Named <span class="hl">Person of the Year 2023 (Research Innovation)</span>, School of Software, Tsinghua University.',
       zh: '获评<span class="hl">清华大学软件学院 2023 年度人物（科研创新）</span>。',

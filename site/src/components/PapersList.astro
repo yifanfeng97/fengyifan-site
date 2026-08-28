@@ -21,7 +21,7 @@ const ifTag = (p: Paper): string | null => {
 <div class="papers-list">
   {papers.map((p) => (
     <article class="paper-row" data-first={p.first ? '1' : '0'}>
-      <div class:list={['paper-venue', { gold: p.venueGold }]}>{p.venue}</div>
+      <div class:list={['paper-venue', { gold: p.venueGold }]}>{p.venue.replace(/ · \d{4}$/, '')}</div>
       <div class="paper-main">
         <div class="paper-title-line">
           <span class="paper-title">{p.title}</span>
