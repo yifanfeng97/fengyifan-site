@@ -58,7 +58,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Hyper-RAG"</span> accepted by Nature Communications.',
       zh: '论文 <span class="hl">Hyper-RAG</span> 被 Nature Communications 录用。',
     },
-    badge: 'Nat. Commun.',
+    badge: 'Nature 子刊',
   },
   {
     date: { en: 'Mar. 2026', zh: '2026.03' },
