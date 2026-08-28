@@ -154,7 +154,7 @@ export const opensource: OssProject[] = [
       en: 'A flexible, AI-ready visualization engine for interactive graph/hypergraph exploration — bridging static graph visualization and dynamic AI-driven analysis with conversational interaction.',
       zh: '灵活的 AI-ready 可视化引擎：交互式图/超图探索，弥合静态可视化与 AI 驱动动态分析之间的鸿沟，支持对话式交互。',
     },
-    image: '/images/ontosight-main.jpg',
+    image: '/images/ontosight-chat.jpg',
     links: [
       { label: 'GitHub', href: 'https://github.com/yifanfeng97/ontosight' },
       { label: 'PyPI', href: 'https://pypi.org/project/ontosight/' },
