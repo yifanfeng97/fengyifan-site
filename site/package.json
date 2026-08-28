@@ -13,5 +13,8 @@
     "astro": "^5.18.2",
     "echarts": "^6.1.0",
     "i18n-iso-countries": "^7.14.0"
+  },
+  "devDependencies": {
+    "topojson-client": "^3.1.0"
   }
 }

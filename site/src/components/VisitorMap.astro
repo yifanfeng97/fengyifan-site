@@ -59,14 +59,12 @@ const hasData = Object.keys(visitors).length > 0;
       real: v,
     }));
     const chart = echarts.init(el);
-    // 默认稍微放大一点（裁掉的多是两侧大洋）
-    const DEFAULT_ZOOM = 1.06;
 
     const render = () => {
       const w = el.clientWidth;
       const h = el.clientHeight;
-      // layoutSize 百分比相对于画布宽高中的较小值；让地图始终横向铺满。
-      const layoutSize = `${((w / Math.min(w, h)) * 100).toFixed(1)}%`;
+      // layoutSize 百分比相对于画布宽高中的较小值；取 75% 让地图四周留白。
+      const layoutSize = `${((w / Math.min(w, h)) * 75).toFixed(1)}%`;
       chart.setOption({
         backgroundColor: 'transparent',
         tooltip: {
@@ -98,11 +96,10 @@ const hasData = Object.keys(visitors).length > 0;
             // 裁剪极地无人区，让地图铺满画布并居中
             boundingCoords: [
               [-170, -56],
-              [190, 78],
+              [192, 78],
             ],
             layoutCenter: ['50%', '50%'],
             layoutSize,
-            zoom: DEFAULT_ZOOM,
             itemStyle: {
               areaColor: '#1D1830',
               borderColor: 'rgba(154, 144, 176, .28)',
@@ -126,7 +123,7 @@ const hasData = Object.keys(visitors).length > 0;
     });
     // 重置视图：恢复默认缩放与位置
     document.getElementById('map-reset')?.addEventListener('click', () => {
-      chart.setOption({ series: [{ zoom: DEFAULT_ZOOM, center: null }] });
+      chart.setOption({ series: [{ zoom: 1, center: null }] });
     });
   }
 </script>

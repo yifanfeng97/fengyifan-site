@@ -54,6 +54,14 @@ export const news: NewsItem[] = [
     badge: 'Oral',
   },
   {
+    date: { en: 'Apr. 2026', zh: '2026.04' },
+    html: {
+      en: 'Released <a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener"><span class="hl">Hyper-Extract</span></a>, an open-source framework for general knowledge extraction over cross-domain, multi-type data structures.',
+      zh: '发布 <a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener"><span class="hl">Hyper-Extract</span></a>：面向跨领域、多类型数据结构的通用知识提取开源框架。',
+    },
+    badge: { en: 'Open Source', zh: '开源框架' },
+  },
+  {
     date: { en: 'Mar. 2026', zh: '2026.03' },
     html: {
       en: 'Paper <span class="hl">"Hyper-RAG"</span> accepted by Nature Communications.',

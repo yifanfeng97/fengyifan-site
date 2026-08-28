@@ -10,7 +10,7 @@ interface Props {
 const { lang } = Astro.props;
 const sec = sections.news;
 
-const VISIBLE_COUNT = 6;
+const VISIBLE_COUNT = 10;
 
 // Group items by year (derived from the English date label, e.g. "Jun. 2026").
 const groups: { year: string; items: typeof news }[] = [];
