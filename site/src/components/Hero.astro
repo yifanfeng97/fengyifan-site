@@ -57,7 +57,9 @@ const icons: Record<string, string> = {
       </div>
 
       <div class:list={['bio-label', { zh: lang === 'zh' }]}>{t(sections.about, lang)}</div>
-      {profile.bio[lang].map((para) => <p class:list={['bio', { en: lang === 'en' }]}>{para}</p>)}
+      {profile.bio[lang].map((para, i) => (
+        <p class:list={['bio', { en: lang === 'en', job: i === profile.bio[lang].length - 1 }]}>{para}</p>
+      ))}
     </div>
   </div>
 </header>
@@ -178,6 +180,13 @@ const icons: Record<string, string> = {
   .bio.en { line-height: 1.65; }
   .bio + .bio { margin-top: 14px; }
   .bio:last-of-type { color: #D8D0E8; }
+  /* 求职信息：金色 + 左侧金条，单独强调 */
+  .bio.job {
+    color: var(--gold-bright);
+    font-weight: 700;
+    border-left: 2px solid var(--gold);
+    padding-left: 13px;
+  }
 
   @media (max-width: 900px) {
     .hero { padding-top: 76px; min-height: auto; }
