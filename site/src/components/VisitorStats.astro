@@ -1,5 +1,4 @@
 ---
-import SectionHead from './SectionHead.astro';
 import { sections, type Lang } from '../data/ui';
 import visitors from '../data/visitors.json';
 
@@ -51,10 +50,7 @@ const EN_NAMES: Record<string, string> = {
 
 const entries = Object.entries(visitors as Record<string, number>).sort((a, b) => b[1] - a[1]);
 const total = entries.reduce((s, [, v]) => s + v, 0);
-const top3 = entries.slice(0, 3);
-const rest = entries.slice(3, 15);
-const otherCount = entries.slice(15).reduce((s, [, v]) => s + v, 0);
-const otherRegions = entries.length - 15;
+const shown = entries.slice(0, 15);
 
 const nameOf = (key: string) => (isZh ? (ZH_NAMES[key] ?? key) : (EN_NAMES[key] ?? key));
 const fmt = (n: number) => n.toLocaleString('en-US');
@@ -62,82 +58,76 @@ const fmt = (n: number) => n.toLocaleString('en-US');
 
 {entries.length > 0 && (
   <section id={sections.visitors.id}>
-    <SectionHead title={sections.visitors.title} hint={sections.visitors.hint} lang={lang} />
+    <div class="v-head">
+      <span class="rule"></span>
+      <span class="src">{sections.visitors.hint}</span>
+    </div>
     <div class="v-total">
       <span class="num">{fmt(total)}</span>
       <span class="cap">
-        {isZh ? `总访问量 · 来自 ${entries.length} 个国家/地区` : `total visits · ${entries.length} countries/regions`}
+        {isZh ? `总访问量 · ${entries.length} 个国家/地区` : `Total visits · ${entries.length} countries/regions`}
       </span>
-      <span class="note">{isZh ? '数据每 4 小时更新一次' : 'Updated every 4 hours'}</span>
     </div>
-    <div class="v-podium">
-      {top3.map(([key, v], i) => (
-        <div class="v-card">
-          <div class="rk">№ {i + 1}</div>
-          <div class="nm">{nameOf(key)}</div>
-          <div class="vl">{fmt(v)}</div>
-        </div>
-      ))}
-    </div>
-    <div class="v-rest">
-      {rest.map(([key, v]) => (
-        <div class="v-mini">
+    <div class="v-pills">
+      {shown.map(([key, v]) => (
+        <span class="v-pill">
           <span class="nm">{nameOf(key)}</span>
           <span class="vl">{fmt(v)}</span>
-        </div>
+        </span>
       ))}
-      {otherCount > 0 && (
-        <div class="v-mini">
-          <span class="nm dim">{isZh ? `其他 ${otherRegions} 个国家/地区` : `${otherRegions} more`}</span>
-          <span class="vl">{fmt(otherCount)}</span>
-        </div>
-      )}
     </div>
   </section>
 )}
 
 <style>
+  /* 主页最后一个区块，底部多留些空间再进 footer */
+  section { padding-bottom: 48px; }
+  .v-head {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 28px;
+  }
+  .v-head .rule {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 106, .35), rgba(124, 58, 237, .55));
+  }
+  .v-head .src {
+    font-family: var(--serif); font-style: italic;
+    font-size: 13px; color: var(--faint);
+    letter-spacing: .1em; white-space: nowrap;
+  }
   .v-total {
-    display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
-    margin-bottom: 24px;
+    text-align: center; margin-bottom: 28px;
   }
   .v-total .num {
-    font-size: 38px; color: var(--gold-bright);
-    font-variant-numeric: lining-nums; line-height: 1;
-  }
-  .v-total .cap { color: var(--muted); font-size: 14px; }
-  .v-total .note { color: var(--faint); font-size: 12px; }
-  .v-podium {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 16px; margin-bottom: 18px;
-  }
-  .v-card {
-    border: 1px solid rgba(212, 175, 106, .4); border-radius: 12px;
-    padding: 22px 16px; text-align: center;
-    background: linear-gradient(180deg, rgba(212, 175, 106, .10), transparent);
-  }
-  .v-card .rk { font-size: 13px; color: var(--gold); letter-spacing: .15em; }
-  .v-card .nm { font-size: 19px; margin: 10px 0 6px; }
-  .v-card .vl {
-    font-size: 26px; color: var(--gold-bright);
+    display: block;
+    font-family: var(--serif);
+    font-size: 42px; line-height: 1.1;
+    color: var(--gold-bright);
     font-variant-numeric: lining-nums;
   }
-  .v-rest {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  .v-total .cap {
+    display: block; margin-top: 6px;
+    color: var(--muted); font-size: 13px;
   }
-  .v-mini {
-    border: 1px solid rgba(154, 144, 176, .18); border-radius: 10px;
-    padding: 12px 14px; display: flex; justify-content: space-between;
-    align-items: baseline; gap: 8px;
+  .v-pills {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 11px 12px;
   }
-  .v-mini .nm { font-size: 13.5px; }
-  .v-mini .nm.dim { color: var(--muted); }
-  .v-mini .vl {
-    font-size: 13px; color: var(--muted);
-    font-variant-numeric: lining-nums; white-space: nowrap;
+  .v-pill {
+    display: inline-flex; align-items: baseline; gap: 8px;
+    border: 1px solid rgba(154, 144, 176, .28);
+    border-radius: 999px;
+    padding: 7px 17px;
+    background: rgba(124, 58, 237, .06);
+  }
+  .v-pill .nm { font-size: 14.5px; }
+  .v-pill .vl {
+    font-size: 12.5px; color: var(--muted);
+    font-variant-numeric: lining-nums;
   }
   @media (max-width: 720px) {
-    .v-podium { grid-template-columns: 1fr; }
-    .v-rest { grid-template-columns: repeat(2, 1fr); }
+    .v-total .num { font-size: 34px; }
+    .v-pill { padding: 6px 13px; }
+    .v-pill .nm { font-size: 13.5px; }
   }
 </style>
