@@ -12,7 +12,7 @@ export const profile = {
   } as I18n,
   tags: [
     'AI for Science',
-    { en: 'High-order-correlation-driven Scientific Computing', zh: '高阶关联驱动的科学计算' },
+    { en: 'Correlation Learning', zh: '关联学习' },
   ] as I18n[],
   bio: {
     en: [
