@@ -4,7 +4,8 @@ export interface NewsItem {
   date: I18n;
   /** HTML string; use <span class="hl">…</span> for highlights, <a> for links. */
   html: Record<'en' | 'zh', string>;
-  badge?: string;
+  /** Short label pill on the right; plain string if language-invariant. */
+  badge?: I18n;
 }
 
 // Full timeline (newest first). 2022–2024 entries migrated from the old site
@@ -26,7 +27,7 @@ export const news: NewsItem[] = [
       en: 'Selected for the <span class="hl">Postdoctoral Innovation Talent Support Program (BX Program)</span>.',
       zh: '入选<span class="hl">博士后创新人才支持计划（博新计划）</span>。',
     },
-    badge: '博新计划',
+    badge: { en: 'BX Program', zh: '博新计划' },
   },
   {
     date: { en: 'Jun. 2026', zh: '2026.06' },
@@ -58,7 +59,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Hyper-RAG"</span> accepted by Nature Communications.',
       zh: '论文 <span class="hl">Hyper-RAG</span> 被 Nature Communications 录用。',
     },
-    badge: 'Nature 子刊',
+    badge: { en: 'Nature Portfolio', zh: 'Nature 子刊' },
   },
   {
     date: { en: 'Mar. 2026', zh: '2026.03' },

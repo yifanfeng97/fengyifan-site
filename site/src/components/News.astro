@@ -40,7 +40,7 @@ let idx = -1;
                 <div class:list={['news-item', { 'news-extra': idx >= VISIBLE_COUNT }]}>
                   <span class="news-date">{t(item.date, lang)}</span>
                   <span class="news-text" set:html={item.html[lang]} />
-                  {item.badge && <span class="news-badge">{item.badge}</span>}
+                  {item.badge && <span class="news-badge">{t(item.badge, lang)}</span>}
                 </div>
               );
             })}
