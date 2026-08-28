@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "sync-visitors": "node scripts/sync-visitors.mjs"
   },
   "dependencies": {
-    "astro": "^5.18.2"
+    "astro": "^5.18.2",
+    "echarts": "^6.1.0",
+    "i18n-iso-countries": "^7.14.0"
   }
 }

@@ -89,4 +89,9 @@ export const sections = {
     title: { en: 'Datasets', zh: '数据集' } as I18n,
     hint: 'Open-Set 3D Retrieval',
   },
+  visitors: {
+    id: 'visitors',
+    title: { en: 'Visitors', zh: '访客分布' } as I18n,
+    hint: 'Microsoft Clarity',
+  },
 };

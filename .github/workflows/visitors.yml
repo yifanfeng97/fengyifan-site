@@ -1,0 +1,53 @@
+# Daily: pull per-country visitor stats from the Microsoft Clarity Data Export
+# API, commit the updated data files, then rebuild and redeploy the site.
+# Note: a push made with GITHUB_TOKEN does not trigger the Deploy workflow,
+# so this job redeploys the site itself after committing.
+#
+# Required secret: CLARITY_TOKEN (Clarity project → Settings → Data Export).
+
+name: Sync visitor stats
+
+on:
+  schedule:
+    - cron: "41 17 * * *" # 01:41 Beijing time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Pull Clarity stats
+        working-directory: site
+        env:
+          CLARITY_TOKEN: ${{ secrets.CLARITY_TOKEN }}
+        run: node scripts/sync-visitors.mjs
+
+      - name: Commit visitor data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/src/data/visitors-daily.json site/src/data/visitors.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Update visitor stats"
+          git push
+
+      - name: Install and build
+        working-directory: site
+        run: |
+          npm ci
+          npm run build
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site/dist

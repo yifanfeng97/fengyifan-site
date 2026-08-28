@@ -4,6 +4,7 @@ import Hero from './Hero.astro';
 import SectionHead from './SectionHead.astro';
 import News from './News.astro';
 import PapersGrid from './PapersGrid.astro';
+import VisitorMap from './VisitorMap.astro';
 
 import { pageTitles, sections, t, type Lang } from '../data/ui';
 import { selectedPapers } from '../data/papers';
@@ -28,6 +29,8 @@ const { lang } = Astro.props;
         <a href={`/${lang}/research/`}>{t(sections.viewAll, lang)}</a>
       </div>
     </section>
+
+    <VisitorMap lang={lang} />
   </main>
 </Base>
 

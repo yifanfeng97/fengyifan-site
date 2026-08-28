@@ -1,0 +1,157 @@
+---
+import SectionHead from './SectionHead.astro';
+import { sections, type Lang } from '../data/ui';
+import visitors from '../data/visitors.json';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const hasData = Object.keys(visitors).length > 0;
+---
+
+{hasData && (
+  <section id={sections.visitors.id}>
+    <SectionHead title={sections.visitors.title} hint={sections.visitors.hint} lang={lang} />
+    <div class="visitor-map-wrap">
+      <div class="visitor-map" id="visitor-map" data-lang={lang}></div>
+      <button class="map-reset" id="map-reset" type="button" aria-label={lang === 'zh' ? '重置视图' : 'Reset view'} title={lang === 'zh' ? '重置视图' : 'Reset view'}>⟲</button>
+    </div>
+  </section>
+)}
+
+<script>
+  import * as echarts from 'echarts/core';
+  import { MapChart } from 'echarts/charts';
+  import { TooltipComponent, VisualMapComponent } from 'echarts/components';
+  import { CanvasRenderer } from 'echarts/renderers';
+  import worldGeo from '../assets/world.geo.json';
+  import visitors from '../data/visitors.json';
+  import i18nCountries from 'i18n-iso-countries';
+  import zhLocale from 'i18n-iso-countries/langs/zh.json';
+
+  echarts.use([MapChart, TooltipComponent, VisualMapComponent, CanvasRenderer]);
+  i18nCountries.registerLocale(zhLocale);
+
+  const el = document.getElementById('visitor-map');
+  if (el) {
+    const isZh = el.dataset.lang === 'zh';
+    echarts.registerMap('world', worldGeo as any);
+    // 中文页的国家名翻译表，仅供 tooltip 显示用。
+    // 注意：不能用 series.nameMap（会导致数据绑定失败、颜色全丢）。
+    const zhNames: Record<string, string> = {};
+    if (isZh) {
+      for (const f of (worldGeo as any).features) {
+        const iso = f.id ?? f.properties?.['iso-a3'];
+        const zhName = iso ? i18nCountries.getName(iso, 'zh') : undefined;
+        if (zhName) zhNames[f.properties.name] = zhName;
+      }
+      zhNames['Hong Kong'] = '中国香港';
+    }
+    const values = Object.values(visitors) as number[];
+    const max = Math.max(1, ...values);
+    // 值取对数再交给 visualMap：避免中国一枝独秀其他国家全黑；
+    // 图例和 tooltip 仍显示真实数值。
+    const data = Object.entries(visitors).map(([name, v]) => ({
+      name,
+      value: Math.log1p(v as number),
+      real: v,
+    }));
+    const chart = echarts.init(el);
+    // 默认稍微放大一点（裁掉的多是两侧大洋）
+    const DEFAULT_ZOOM = 1.06;
+
+    const render = () => {
+      const w = el.clientWidth;
+      const h = el.clientHeight;
+      // layoutSize 百分比相对于画布宽高中的较小值；让地图始终横向铺满。
+      const layoutSize = `${((w / Math.min(w, h)) * 100).toFixed(1)}%`;
+      chart.setOption({
+        backgroundColor: 'transparent',
+        tooltip: {
+          trigger: 'item',
+          backgroundColor: '#221C30',
+          borderColor: 'rgba(212, 175, 106, .35)',
+          textStyle: { color: '#EDE9F5', fontFamily: 'Georgia, serif', fontSize: 13 },
+          formatter: (p: any) => {
+            const name = isZh ? (zhNames[p.name] ?? p.name) : p.name;
+            const real = p.data?.real;
+            return real ? `${name} · ${real}` : name;
+          },
+        },
+        visualMap: {
+          min: 0,
+          max: Math.log1p(max),
+          left: 0,
+          bottom: 0,
+          text: [String(max), '0'],
+          textStyle: { color: '#9A90B0', fontFamily: 'Georgia, serif', fontSize: 12 },
+          inRange: { color: ['#221C36', '#3D2C5E', '#6D28A8', '#C9A959', '#E9C98A'] },
+          calculable: false,
+        },
+        series: [
+          {
+            type: 'map',
+            map: 'world',
+            roam: true,
+            // 裁剪极地无人区，让地图铺满画布并居中
+            boundingCoords: [
+              [-170, -56],
+              [190, 78],
+            ],
+            layoutCenter: ['50%', '50%'],
+            layoutSize,
+            zoom: DEFAULT_ZOOM,
+            itemStyle: {
+              areaColor: '#1D1830',
+              borderColor: 'rgba(154, 144, 176, .28)',
+              borderWidth: 0.6,
+            },
+            emphasis: {
+              itemStyle: { areaColor: '#D4AF6A' },
+              label: { show: false },
+            },
+            select: { disabled: true },
+            nameProperty: 'name',
+            data,
+          },
+        ],
+      });
+    };
+    render();
+    window.addEventListener('resize', () => {
+      chart.resize();
+      render();
+    });
+    // 重置视图：恢复默认缩放与位置
+    document.getElementById('map-reset')?.addEventListener('click', () => {
+      chart.setOption({ series: [{ zoom: DEFAULT_ZOOM, center: null }] });
+    });
+  }
+</script>
+
+<style>
+  .visitor-map-wrap { position: relative; }
+  .visitor-map {
+    width: 100%;
+    /* 铺满宽度需要约 532px 高，留余量保证南北边缘完整 */
+    height: 540px;
+  }
+  .map-reset {
+    position: absolute; right: 8px; bottom: 8px;
+    width: 34px; height: 34px; border-radius: 50%;
+    font-size: 17px; line-height: 1; cursor: pointer;
+    color: var(--gold-bright);
+    border: 1px solid rgba(212, 175, 106, .45);
+    background: rgba(212, 175, 106, .08);
+    transition: all .25s ease;
+  }
+  .map-reset:hover {
+    background: rgba(212, 175, 106, .16);
+    box-shadow: 0 0 14px rgba(212, 175, 106, .25);
+  }
+  @media (max-width: 640px) {
+    .visitor-map { height: 280px; }
+  }
+</style>
