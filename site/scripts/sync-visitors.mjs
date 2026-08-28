@@ -1,6 +1,6 @@
 // Pull last-24h per-country visitor counts from the Microsoft Clarity Data
 // Export API, store a daily snapshot in visitors-daily.json and rebuild the
-// aggregated visitors.json consumed by the homepage world map.
+// aggregated visitors.json consumed by the homepage visitor stats.
 //
 // Usage: CLARITY_TOKEN=<token> node scripts/sync-visitors.mjs
 
@@ -11,7 +11,6 @@ import { dirname, join } from 'node:path';
 const here = dirname(fileURLToPath(import.meta.url));
 const dailyPath = join(here, '../src/data/visitors-daily.json');
 const aggPath = join(here, '../src/data/visitors.json');
-const geoPath = join(here, '../src/assets/world.geo.json');
 
 const token = process.env.CLARITY_TOKEN;
 if (!token) {
@@ -19,11 +18,10 @@ if (!token) {
   process.exit(1);
 }
 
-// Clarity "Country/Region" names → names used by src/assets/world.geo.json.
-// Extend this map as new mismatches show up in the sync logs.
+// Clarity "Country/Region" names → canonical keys in visitors.json.
+// Kept for continuity with historical data; extend as new mismatches show up.
 const NAME_MAP = {
   'United States': 'United States of America',
-  Taiwan: 'China', // 地图上台湾已并入中国
 };
 
 const url =
@@ -50,13 +48,6 @@ for (const row of rows) {
   // Human sessions only: subtract bot traffic.
   const humans = Math.max(0, Number(row.totalSessionCount ?? 0) - Number(row.totalBotSessionCount ?? 0));
   counts[name] = (counts[name] ?? 0) + humans;
-}
-
-// Warn about country names not present in the world map (need NAME_MAP entries).
-const geo = JSON.parse(readFileSync(geoPath, 'utf8'));
-const geoNames = new Set(geo.features.map((f) => f.properties?.name));
-for (const name of Object.keys(counts)) {
-  if (!geoNames.has(name)) console.warn(`Unmapped country name: ${name}`);
 }
 
 const today = new Date().toISOString().slice(0, 10); // UTC date

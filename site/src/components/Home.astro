@@ -4,7 +4,7 @@ import Hero from './Hero.astro';
 import SectionHead from './SectionHead.astro';
 import News from './News.astro';
 import PapersGrid from './PapersGrid.astro';
-import VisitorMap from './VisitorMap.astro';
+import VisitorStats from './VisitorStats.astro';
 
 import { pageTitles, sections, t, type Lang } from '../data/ui';
 import { selectedPapers } from '../data/papers';
@@ -30,7 +30,7 @@ const { lang } = Astro.props;
       </div>
     </section>
 
-    <VisitorMap lang={lang} />
+    <VisitorStats lang={lang} />
   </main>
 </Base>
 

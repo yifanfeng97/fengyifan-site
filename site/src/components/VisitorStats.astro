@@ -1,0 +1,143 @@
+---
+import SectionHead from './SectionHead.astro';
+import { sections, type Lang } from '../data/ui';
+import visitors from '../data/visitors.json';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const isZh = lang === 'zh';
+
+// 展示用名称映射：键为 visitors.json 里的英文名（沿用 Clarity Country/Region）。
+// 未列出的新来源直接回退为英文名。
+const ZH_NAMES: Record<string, string> = {
+  China: '中国',
+  'Hong Kong': '中国香港',
+  Taiwan: '中国台湾',
+  'United States of America': '美国',
+  Singapore: '新加坡',
+  Japan: '日本',
+  'United Kingdom': '英国',
+  Germany: '德国',
+  'South Korea': '韩国',
+  Canada: '加拿大',
+  Australia: '澳大利亚',
+  France: '法国',
+  India: '印度',
+  Netherlands: '荷兰',
+  Switzerland: '瑞士',
+  Italy: '意大利',
+  Sweden: '瑞典',
+  Spain: '西班牙',
+  Israel: '以色列',
+  Denmark: '丹麦',
+  Belgium: '比利时',
+  Austria: '奥地利',
+  Brazil: '巴西',
+  Russia: '俄罗斯',
+  Finland: '芬兰',
+  Ireland: '爱尔兰',
+  Poland: '波兰',
+  'New Zealand': '新西兰',
+  Norway: '挪威',
+};
+const EN_NAMES: Record<string, string> = {
+  'United States of America': 'United States',
+  'Hong Kong': 'Hong Kong, China',
+  Taiwan: 'Taiwan, China',
+};
+
+const entries = Object.entries(visitors as Record<string, number>).sort((a, b) => b[1] - a[1]);
+const total = entries.reduce((s, [, v]) => s + v, 0);
+const top3 = entries.slice(0, 3);
+const rest = entries.slice(3, 15);
+const otherCount = entries.slice(15).reduce((s, [, v]) => s + v, 0);
+const otherRegions = entries.length - 15;
+
+const nameOf = (key: string) => (isZh ? (ZH_NAMES[key] ?? key) : (EN_NAMES[key] ?? key));
+const fmt = (n: number) => n.toLocaleString('en-US');
+---
+
+{entries.length > 0 && (
+  <section id={sections.visitors.id}>
+    <SectionHead title={sections.visitors.title} hint={sections.visitors.hint} lang={lang} />
+    <div class="v-total">
+      <span class="num">{fmt(total)}</span>
+      <span class="cap">
+        {isZh ? `总访问量 · 来自 ${entries.length} 个国家/地区` : `total visits · ${entries.length} countries/regions`}
+      </span>
+      <span class="note">{isZh ? '数据每 4 小时更新一次' : 'Updated every 4 hours'}</span>
+    </div>
+    <div class="v-podium">
+      {top3.map(([key, v], i) => (
+        <div class="v-card">
+          <div class="rk">№ {i + 1}</div>
+          <div class="nm">{nameOf(key)}</div>
+          <div class="vl">{fmt(v)}</div>
+        </div>
+      ))}
+    </div>
+    <div class="v-rest">
+      {rest.map(([key, v]) => (
+        <div class="v-mini">
+          <span class="nm">{nameOf(key)}</span>
+          <span class="vl">{fmt(v)}</span>
+        </div>
+      ))}
+      {otherCount > 0 && (
+        <div class="v-mini">
+          <span class="nm dim">{isZh ? `其他 ${otherRegions} 个国家/地区` : `${otherRegions} more`}</span>
+          <span class="vl">{fmt(otherCount)}</span>
+        </div>
+      )}
+    </div>
+  </section>
+)}
+
+<style>
+  .v-total {
+    display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .v-total .num {
+    font-size: 38px; color: var(--gold-bright);
+    font-variant-numeric: oldstyle-nums; line-height: 1;
+  }
+  .v-total .cap { color: var(--muted); font-size: 14px; }
+  .v-total .note { color: var(--faint); font-size: 12px; }
+  .v-podium {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-bottom: 18px;
+  }
+  .v-card {
+    border: 1px solid rgba(212, 175, 106, .4); border-radius: 12px;
+    padding: 22px 16px; text-align: center;
+    background: linear-gradient(180deg, rgba(212, 175, 106, .10), transparent);
+  }
+  .v-card .rk { font-size: 13px; color: var(--gold); letter-spacing: .15em; }
+  .v-card .nm { font-size: 19px; margin: 10px 0 6px; }
+  .v-card .vl {
+    font-size: 26px; color: var(--gold-bright);
+    font-variant-numeric: oldstyle-nums;
+  }
+  .v-rest {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  }
+  .v-mini {
+    border: 1px solid rgba(154, 144, 176, .18); border-radius: 10px;
+    padding: 12px 14px; display: flex; justify-content: space-between;
+    align-items: baseline; gap: 8px;
+  }
+  .v-mini .nm { font-size: 13.5px; }
+  .v-mini .nm.dim { color: var(--muted); }
+  .v-mini .vl {
+    font-size: 13px; color: var(--muted);
+    font-variant-numeric: oldstyle-nums; white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    .v-podium { grid-template-columns: 1fr; }
+    .v-rest { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

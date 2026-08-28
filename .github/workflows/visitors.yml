@@ -1,5 +1,6 @@
-# Daily: pull per-country visitor stats from the Microsoft Clarity Data Export
-# API, commit the updated data files, then rebuild and redeploy the site.
+# Every 4 hours: pull per-country visitor stats from the Microsoft Clarity
+# Data Export API, commit the updated data files, then rebuild and redeploy
+# the site.
 # Note: a push made with GITHUB_TOKEN does not trigger the Deploy workflow,
 # so this job redeploys the site itself after committing.
 #
@@ -9,7 +10,7 @@ name: Sync visitor stats
 
 on:
   schedule:
-    - cron: "41 17 * * *" # 01:41 Beijing time
+    - cron: "41 */4 * * *" # every 4 hours (UTC 00:41/04:41/... = Beijing 08:41/12:41/...)
   workflow_dispatch:
 
 permissions:
