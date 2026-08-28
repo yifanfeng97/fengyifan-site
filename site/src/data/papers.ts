@@ -42,7 +42,10 @@ export const firstAuthorPapers: Paper[] = [
     thumb: 'Hyper-RAG',
     first: true,
     selected: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://www.nature.com/articles/s41467-026-71411-1' },
+      { label: 'Code', href: 'https://github.com/iMoonLab/Hyper-RAG' },
+    ],
   },
   {
     title:
@@ -55,7 +58,10 @@ export const firstAuthorPapers: Paper[] = [
     thumb: 'Hyper-KGGen',
     first: true,
     selected: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://dl.acm.org/doi/10.1145/3770855.3818198' },
+      { label: 'Code', href: 'https://github.com/Rizrock/Hyper-KGGen' },
+    ],
   },
   {
     title: 'Hypergraph Foundation Model',
@@ -65,7 +71,9 @@ export const firstAuthorPapers: Paper[] = [
     year: 2026,
     thumb: 'HFM',
     first: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11311689' },
+    ],
   },
   {
     title: 'How Powerful are Hypergraph Neural Networks?',
@@ -75,7 +83,10 @@ export const firstAuthorPapers: Paper[] = [
     year: 2026,
     thumb: 'How Powerful',
     first: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11657965' },
+      { label: 'Code', href: 'https://github.com/iMoonLab/HGIN' },
+    ],
   },
   {
     title: 'Knowledge-Embedded Hypergraph Neural Networks',
@@ -85,7 +96,9 @@ export const firstAuthorPapers: Paper[] = [
     year: 2026,
     thumb: 'KE-HGNN',
     first: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11435944' },
+    ],
   },
   {
     title: 'Hyper-YOLO: When Visual Object Detection Meets Hypergraph Computation',
@@ -97,17 +110,23 @@ export const firstAuthorPapers: Paper[] = [
     thumb: 'Hyper-YOLO',
     first: true,
     selected: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/10818703' },
+      { label: 'Code', href: 'https://github.com/iMoonLab/Hyper-YOLO' },
+    ],
   },
   {
     title: 'HGNN Shield: Defending Hypergraph Neural Networks Against High-Order Structure Attack',
     authorsHtml:
       '<b>Yifan Feng</b>, Yifan Zhang, Shaoyi Du, Shihui Ying, Jun-Hai Yong, Yue Gao',
-    venue: 'IEEE TPAMI · 2025',
-    year: 2025,
+    venue: 'IEEE TPAMI · 2026',
+    year: 2026,
     thumb: 'HGNN Shield',
     first: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11316283' },
+      { label: 'Code', href: 'https://github.com/iMoonLab/HGNN-Shield' },
+    ],
   },
   {
     title: 'Kernelized Hypergraph Neural Networks',
@@ -116,7 +135,10 @@ export const firstAuthorPapers: Paper[] = [
     year: 2025,
     thumb: 'KHGNN',
     first: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11063418' },
+      { label: 'Code', href: 'https://github.com/iMoonLab/KHGNN' },
+    ],
   },
   {
     title: 'Self-Supervised Hypergraph Training Framework via Structure-Aware Learning',
@@ -126,7 +148,10 @@ export const firstAuthorPapers: Paper[] = [
     year: 2025,
     thumb: 'SS-HTF',
     first: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11106277' },
+      { label: 'Code', href: 'https://github.com/iMoonLab/SS-HT' },
+    ],
   },
   {
     title: 'Beyond Graphs: Can Large Language Models Comprehend Hypergraphs?',
@@ -136,7 +161,10 @@ export const firstAuthorPapers: Paper[] = [
     year: 2025,
     thumb: 'Beyond Graphs',
     first: true,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://openreview.net/forum?id=28qOQwjuma' },
+      { label: 'Code', href: 'https://github.com/iMoonLab/LLM4Hypergraph' },
+    ],
   },
   {
     title: 'Hypergraph Isomorphism Computation',
@@ -249,7 +277,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2026,
     thumb: 'HGNNv2',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11342293' },
+    ],
   },
   {
     title: 'Reinterpreting Hypergraph Kernels: Insights Through Homomorphism Analysis',
@@ -258,7 +288,10 @@ export const coAuthorPapers: Paper[] = [
     year: 2026,
     thumb: 'HG Kernels',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11159289' },
+      { label: 'Code', href: 'https://github.com/FuYou0723/RethinkHGK' },
+    ],
   },
   {
     title:
@@ -269,7 +302,10 @@ export const coAuthorPapers: Paper[] = [
     year: 2026,
     thumb: 'Cog-RAG',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ojs.aaai.org/index.php/AAAI/article/view/40363' },
+      { label: 'Code', href: 'https://github.com/haoohu/Cog-RAG' },
+    ],
   },
   {
     title: 'Cross-Modal 3D Shape Retrieval via Heterogeneous Dynamic Graph Representation',
@@ -278,7 +314,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2025,
     thumb: 'HDGR',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/10818713' },
+    ],
   },
   {
     title: 'Mode Hypergraph Neural Network',
@@ -287,7 +325,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2025,
     thumb: 'ModeHGNN',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/10916967' },
+    ],
   },
   {
     title: 'Hypergraph-Based Remaining Prototype Alignment for Open-Set Cross-Domain Image Retrieval',
@@ -296,7 +336,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2025,
     thumb: 'HG-RPA',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/10855490' },
+    ],
   },
   {
     title: 'Residual Fuzzy Alignment on Hypergraph for Open-Set 3D Cross-Modal Retrieval',
@@ -305,7 +347,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2025,
     thumb: 'RFA',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11125822' },
+    ],
   },
   {
     title: 'Hyper-Depth: Hypergraph-based Multi-Scale Representation Fusion for Monocular Depth Estimation',
@@ -314,7 +358,10 @@ export const coAuthorPapers: Paper[] = [
     year: 2025,
     thumb: 'Hyper-Depth',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://openaccess.thecvf.com/content/ICCV2025/html/Bie_Hyper-Depth_Hypergraph-based_Multi-Scale_Representation_Fusion_for_Monocular_Depth_Estimation_ICCV_2025_paper.html' },
+      { label: 'Code', href: 'https://github.com/Insomniaeggy/HyperDepth' },
+    ],
   },
   {
     title: 'Hypergraph Foundation Model for Brain Disease Diagnosis',
@@ -324,7 +371,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2025,
     thumb: 'Brain-HFM',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/10967508' },
+    ],
   },
   {
     title:
@@ -335,7 +384,9 @@ export const coAuthorPapers: Paper[] = [
     note: { en: 'Oral · Best Student Paper Award', zh: 'Oral · 最佳学生论文奖' },
     thumb: 'SRCR',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/10687928' },
+    ],
   },
   {
     title: 'Hypergraph Dynamic System',
@@ -356,7 +407,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2024,
     thumb: 'TESR',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://dl.acm.org/doi/10.1145/3652583.3658046' },
+    ],
   },
   {
     title: 'Multi-scale Consistency for Robust 3D Registration via Hierarchical Sinkhorn Tree',
@@ -365,7 +418,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2024,
     thumb: 'MC-HST',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://proceedings.neurips.cc/paper_files/paper/2024/hash/a70ee7ea485e4fd36abbfc4adf591c28-Abstract-Conference.html' },
+    ],
   },
   {
     title: 'Semi-Open 3D Object Retrieval via Hierarchical Equilibrium on Hypergraph',
@@ -374,7 +429,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2024,
     thumb: 'Semi-Open',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://proceedings.neurips.cc/paper_files/paper/2024/hash/73a2e3284e26730555101a2fb4bbc54e-Abstract-Conference.html' },
+    ],
   },
   {
     title: 'Assembly Fuzzy Representation on Hypergraph for Open-Set 3D Object Retrieval',
@@ -383,7 +440,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2024,
     thumb: 'AFR',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://proceedings.neurips.cc/paper_files/paper/2024/hash/e23c30848bc106b74b8a6993e80fb177-Abstract-Conference.html' },
+    ],
   },
   {
     title: 'Negative Prompt Driven Complementary Parallel Representation for Open-World 3D Object Retrieval',
@@ -393,7 +452,9 @@ export const coAuthorPapers: Paper[] = [
     note: { en: 'Oral', zh: 'Oral 报告' },
     thumb: 'NP-CPR',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://www.ijcai.org/proceedings/2024/166' },
+    ],
   },
   {
     title: 'Multi-View Time-Series Hypergraph Neural Network for Action Recognition',
@@ -402,7 +463,9 @@ export const coAuthorPapers: Paper[] = [
     year: 2024,
     thumb: 'MV-TS-HGNN',
     first: false,
-    links: [],
+    links: [
+      { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/10517892' },
+    ],
   },
   {
     title: 'Hierarchical Set-to-set Representation for 3D Cross-modal Retrieval',
