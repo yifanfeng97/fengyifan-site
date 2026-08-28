@@ -96,6 +96,7 @@ export const firstAuthorPapers: Paper[] = [
     first: true,
     links: [
       { label: 'PDF', href: 'https://ieeexplore.ieee.org/document/11435944' },
+      { label: 'Code', href: 'https://github.com/yifanfeng97/KE-HGNN' },
     ],
   },
   {
