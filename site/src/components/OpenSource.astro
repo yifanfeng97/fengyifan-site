@@ -9,38 +9,44 @@ interface Props {
 
 const { lang } = Astro.props;
 const sec = sections.opensource;
+const groups = ['hypergraph', 'pathology'] as const;
 ---
 
 <section id={sec.id}>
   <SectionHead title={sec.title} hint={sec.hint} lang={lang} />
 
-  <div class="oss-grid">
-    {opensource.map((project) => (
-      <div class="card oss-card">
-        <div class="oss-name">
-          {project.href ? (
-            <a href={project.href} target="_blank" rel="noopener">{project.name}</a>
-          ) : (
-            project.name
-          )}
-          {project.badges.map((badge) => <span class="oss-badge">{t(badge, lang)}</span>)}
-        </div>
-        <div class="oss-desc">{t(project.desc, lang)}</div>
-        {project.video && (
-          <video class="oss-video" src={project.video} loop muted autoplay playsinline />
-        )}
-        {project.image && (
-          <img class="oss-video" src={project.image} alt={`${project.name} overview`} loading="lazy" />
-        )}
-        <div class="oss-links">
-          {project.links.map((link) => (
-            <a class="pub-link" href={link.href} target="_blank" rel="noopener">{t(link.label, lang)}</a>
-          ))}
-        </div>
-        <div class="oss-meta">{project.meta}</div>
+  {groups.map((g) => (
+    <div class="oss-group">
+      <h3 class="oss-group-title">{t(sec.groups[g], lang)}</h3>
+      <div class="oss-grid">
+        {opensource.filter((p) => p.group === g).map((project) => (
+          <div class="card oss-card">
+            <div class="oss-name">
+              {project.href ? (
+                <a href={project.href} target="_blank" rel="noopener">{project.name}</a>
+              ) : (
+                project.name
+              )}
+              {project.badges.map((badge) => <span class="oss-badge">{t(badge, lang)}</span>)}
+            </div>
+            <div class="oss-desc">{t(project.desc, lang)}</div>
+            {project.video && (
+              <video class="oss-video" src={project.video} loop muted autoplay playsinline />
+            )}
+            {project.image && (
+              <img class="oss-video" src={project.image} alt={`${project.name} overview`} loading="lazy" />
+            )}
+            <div class="oss-links">
+              {project.links.map((link) => (
+                <a class="pub-link" href={link.href} target="_blank" rel="noopener">{t(link.label, lang)}</a>
+              ))}
+            </div>
+            <div class="oss-meta">{project.meta}</div>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
+    </div>
+  ))}
 </section>
 
 <style>
@@ -62,6 +68,16 @@ const sec = sections.opensource;
   }
 
   /* ---------- open source ---------- */
+  .oss-group + .oss-group { margin-top: 34px; }
+  .oss-group-title {
+    font-family: var(--serif); font-size: 16px; font-weight: 600;
+    color: var(--gold); letter-spacing: .04em; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .oss-group-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(212, 175, 106, .35), transparent);
+  }
   .oss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
   .oss-card { display: flex; flex-direction: column; gap: 10px; }
   .oss-name {

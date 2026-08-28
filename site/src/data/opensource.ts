@@ -9,6 +9,8 @@ export interface OssProject {
   name: string;
   /** Optional link wrapping the project name. */
   href?: string;
+  /** Display group: hypergraph & AI infrastructure, or digital pathology tools. */
+  group: 'hypergraph' | 'pathology';
   badges: I18n[];
   desc: I18n;
   /** Optional demo video path (site-relative). */
@@ -21,7 +23,25 @@ export interface OssProject {
 
 export const opensource: OssProject[] = [
   {
+    name: 'Hyper-Extract',
+    group: 'hypergraph',
+    href: 'https://github.com/yifanfeng97/Hyper-Extract',
+    badges: ['GitHub Trending #2', '3300+ Stars'],
+    desc: {
+      en: 'An LLM-powered knowledge extraction and evolution framework: transform unstructured documents into persistent, strongly-typed Knowledge Abstracts with one command — from simple collections and Pydantic models to knowledge graphs, hypergraphs, and even spatio-temporal graphs. Ships with 10+ extraction engines (GraphRAG, LightRAG, Hyper-RAG, KG-Gen, etc.), 80+ zero-code YAML templates, incremental evolution, and Obsidian export. It ranked 2nd on GitHub Trending worldwide.',
+      zh: '基于 LLM 的知识抽取与演化框架：一条命令将非结构化文档转化为持久化、强类型的「知识抽象」——从简单的集合与 Pydantic 模型，到知识图谱、超图乃至时空图。内置 10+ 抽取引擎（GraphRAG、LightRAG、Hyper-RAG、KG-Gen 等）、80+ 零代码 YAML 模板，支持增量演化与 Obsidian 导出。曾登 GitHub Trending 全球第二。',
+    },
+    image: '/images/hyper-extract-hero.jpg',
+    links: [
+      { label: 'GitHub', href: 'https://github.com/yifanfeng97/Hyper-Extract' },
+      { label: 'Documentation', href: 'https://yifanfeng97.github.io/Hyper-Extract/latest/' },
+      { label: 'PyPI', href: 'https://pypi.org/project/hyperextract/' },
+    ],
+    meta: 'github.com/yifanfeng97/Hyper-Extract',
+  },
+  {
     name: 'DeepHypergraph (DHG)',
+    group: 'hypergraph',
     href: 'https://github.com/iMoonLab/DeepHypergraph',
     badges: [{ en: '870+ Stars', zh: '870+ Stars' }],
     desc: {
@@ -41,23 +61,8 @@ export const opensource: OssProject[] = [
     meta: 'github.com/iMoonLab/DeepHypergraph',
   },
   {
-    name: 'Hyper-Extract',
-    href: 'https://github.com/yifanfeng97/Hyper-Extract',
-    badges: ['GitHub Trending #2', '3300+ Stars'],
-    desc: {
-      en: 'An LLM-powered knowledge extraction and evolution framework: transform unstructured documents into persistent, strongly-typed Knowledge Abstracts with one command — from simple collections and Pydantic models to knowledge graphs, hypergraphs, and even spatio-temporal graphs. Ships with 10+ extraction engines (GraphRAG, LightRAG, Hyper-RAG, KG-Gen, etc.), 80+ zero-code YAML templates, incremental evolution, and Obsidian export. It ranked 2nd on GitHub Trending worldwide.',
-      zh: '基于 LLM 的知识抽取与演化框架：一条命令将非结构化文档转化为持久化、强类型的「知识抽象」——从简单的集合与 Pydantic 模型，到知识图谱、超图乃至时空图。内置 10+ 抽取引擎（GraphRAG、LightRAG、Hyper-RAG、KG-Gen 等）、80+ 零代码 YAML 模板，支持增量演化与 Obsidian 导出。曾登 GitHub Trending 全球第二。',
-    },
-    image: '/images/hyper-extract-hero.jpg',
-    links: [
-      { label: 'GitHub', href: 'https://github.com/yifanfeng97/Hyper-Extract' },
-      { label: 'Documentation', href: 'https://yifanfeng97.github.io/Hyper-Extract/latest/' },
-      { label: 'PyPI', href: 'https://pypi.org/project/hyperextract/' },
-    ],
-    meta: 'github.com/yifanfeng97/Hyper-Extract',
-  },
-  {
     name: 'Hypergraph-DB',
+    group: 'hypergraph',
     href: 'https://github.com/iMoonLab/Hypergraph-DB',
     badges: [{ en: 'PyPI', zh: 'PyPI' }],
     desc: {
@@ -73,6 +78,7 @@ export const opensource: OssProject[] = [
   },
   {
     name: 'kfbslide',
+    group: 'pathology',
     href: 'https://github.com/yifanfeng97/kfbslide',
     badges: [{ en: 'PyPI', zh: 'PyPI' }],
     desc: {
@@ -88,6 +94,7 @@ export const opensource: OssProject[] = [
   },
   {
     name: 'mrxsslide',
+    group: 'pathology',
     href: 'https://github.com/yifanfeng97/mrxsslide',
     badges: [{ en: 'PyPI', zh: 'PyPI' }],
     desc: {
@@ -103,6 +110,7 @@ export const opensource: OssProject[] = [
   },
   {
     name: 'hisalign',
+    group: 'pathology',
     href: 'https://github.com/yifanfeng97/hisalign',
     badges: [{ en: 'PyPI', zh: 'PyPI' }],
     desc: {
@@ -118,6 +126,7 @@ export const opensource: OssProject[] = [
   },
   {
     name: 'ihcinfer',
+    group: 'pathology',
     href: 'https://github.com/yifanfeng97/ihcinfer',
     badges: [{ en: 'PyPI', zh: 'PyPI' }],
     desc: {
@@ -133,6 +142,7 @@ export const opensource: OssProject[] = [
   },
   {
     name: 'ontomem',
+    group: 'hypergraph',
     href: 'https://github.com/yifanfeng97/ontomem',
     badges: [{ en: 'PyPI', zh: 'PyPI' }],
     desc: {
@@ -148,6 +158,7 @@ export const opensource: OssProject[] = [
   },
   {
     name: 'ontosight',
+    group: 'hypergraph',
     href: 'https://github.com/yifanfeng97/ontosight',
     badges: [{ en: 'PyPI', zh: 'PyPI' }],
     desc: {

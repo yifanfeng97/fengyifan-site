@@ -83,6 +83,10 @@ export const sections = {
     id: 'opensource',
     title: { en: 'Open Source', zh: '开源项目' } as I18n,
     hint: 'GitHub',
+    groups: {
+      hypergraph: { en: 'Hypergraph & AI Infrastructure', zh: '超图计算与 AI 基础设施' } as I18n,
+      pathology: { en: 'Digital Pathology Tools', zh: '数字病理工具' } as I18n,
+    },
   },
   datasets: {
     id: 'datasets',
