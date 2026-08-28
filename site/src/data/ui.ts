@@ -71,7 +71,7 @@ export const sections = {
     coGroup: { en: 'Collaborative Papers', zh: '合作论文' } as I18n,
     papersUnit: { en: 'papers', zh: '篇' } as I18n,
     filterAll: { en: 'All', zh: '全部' } as I18n,
-    filterFirst: { en: 'First / Co-first', zh: '一作' } as I18n,
+    filterFirst: { en: 'First', zh: '一作' } as I18n,
     filterCo: { en: 'Collaborative', zh: '合作' } as I18n,
   },
   grants: {
