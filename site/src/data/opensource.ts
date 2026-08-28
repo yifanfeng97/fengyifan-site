@@ -94,7 +94,7 @@ export const opensource: OssProject[] = [
       en: 'A pure-Python reader for MRXS (3DHISTECH MIRAX) whole-slide images with an OpenSlide-compatible API, enabling cross-platform access to MIRAX slides without vendor SDKs.',
       zh: '纯 Python 的 MRXS（3DHISTECH MIRAX）全切片图像读取库，OpenSlide 兼容 API，无需厂商 SDK 即可跨平台读取。',
     },
-    image: '/images/mrxsslide-og.jpg',
+    image: '/images/mrxsslide-hero.jpg',
     links: [
       { label: 'GitHub', href: 'https://github.com/yifanfeng97/mrxsslide' },
       { label: 'PyPI', href: 'https://pypi.org/project/mrxsslide/' },
