@@ -42,7 +42,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"How Powerful are Hypergraph Neural Networks?"</span> accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '论文<span class="hl">《How Powerful are Hypergraph Neural Networks?》</span>被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI',
+    badge: 'IEEE TPAMI',
   },
   {
     date: { en: 'Jun. 2026', zh: '2026.06' },
@@ -66,7 +66,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Knowledge-Embedded Hypergraph Neural Networks"</span> accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '论文<span class="hl">《Knowledge-Embedded Hypergraph Neural Networks》</span>被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI',
+    badge: 'IEEE TPAMI',
   },
   {
     date: { en: 'Jan. 2026', zh: '2026.01' },
@@ -82,7 +82,7 @@ export const news: NewsItem[] = [
       en: '<span class="hl">Three papers</span> (Hypergraph Foundation Model, HGNN Shield, HGNNv2) accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '<span class="hl">三篇论文</span>（Hypergraph Foundation Model、HGNN Shield、HGNNv2）被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI ×3',
+    badge: 'IEEE TPAMI ×3',
   },
   {
     date: { en: 'Nov. 2025', zh: '2025.11' },
@@ -106,7 +106,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Reinterpreting Hypergraph Kernels"</span> accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '论文<span class="hl">《Reinterpreting Hypergraph Kernels》</span>被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI',
+    badge: 'IEEE TPAMI',
   },
   {
     date: { en: 'Jul. 2025', zh: '2025.07' },
@@ -122,7 +122,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Self-Supervised Hypergraph Training Framework"</span> accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '论文<span class="hl">《Self-Supervised Hypergraph Training Framework》</span>被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI',
+    badge: 'IEEE TPAMI',
   },
   {
     date: { en: 'Jun. 2025', zh: '2025.06' },
@@ -146,7 +146,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Kernelized Hypergraph Neural Networks"</span> accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '论文<span class="hl">《Kernelized Hypergraph Neural Networks》</span>被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI',
+    badge: 'IEEE TPAMI',
   },
   {
     date: { en: 'Jun. 2025', zh: '2025.06' },
@@ -194,7 +194,7 @@ export const news: NewsItem[] = [
       en: '<span class="hl">Two papers</span> (Hyper-YOLO, Cross-Modal 3D Shape Retrieval) accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '<span class="hl">两篇论文</span>（Hyper-YOLO、Cross-Modal 3D Shape Retrieval）被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI ×2',
+    badge: 'IEEE TPAMI ×2',
   },
   {
     date: { en: 'Nov. 2024', zh: '2024.11' },
@@ -290,7 +290,7 @@ export const news: NewsItem[] = [
       en: 'One paper accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '一篇论文被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI',
+    badge: 'IEEE TPAMI',
   },
   {
     date: { en: 'Nov. 2023', zh: '2023.11' },
@@ -298,7 +298,7 @@ export const news: NewsItem[] = [
       en: 'One paper accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '一篇论文被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI',
+    badge: 'IEEE TPAMI',
   },
   {
     date: { en: 'Oct. 2023', zh: '2023.10' },
@@ -338,7 +338,7 @@ export const news: NewsItem[] = [
       en: 'One paper accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '一篇论文被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI',
+    badge: 'IEEE TPAMI',
   },
   {
     date: { en: 'Sep. 2022', zh: '2022.09' },
@@ -378,7 +378,7 @@ export const news: NewsItem[] = [
       en: 'One paper accepted by <span class="hl">IEEE TPAMI</span>.',
       zh: '一篇论文被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
-    badge: 'TPAMI',
+    badge: 'IEEE TPAMI',
   },
   {
     date: { en: 'Feb. 2022', zh: '2022.02' },
