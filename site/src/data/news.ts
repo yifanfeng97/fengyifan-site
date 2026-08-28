@@ -162,7 +162,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Hypergraph Foundation Model for Brain Disease Diagnosis"</span> accepted by IEEE TNNLS.',
       zh: '论文<span class="hl">《Hypergraph Foundation Model for Brain Disease Diagnosis》</span>被 IEEE TNNLS 录用。',
     },
-    badge: 'TNNLS',
+    badge: 'IEEE TNNLS',
   },
   {
     date: { en: 'Feb. 2025', zh: '2025.02' },
@@ -170,7 +170,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Mode Hypergraph Neural Network"</span> accepted by IEEE TNNLS.',
       zh: '论文<span class="hl">《Mode Hypergraph Neural Network》</span>被 IEEE TNNLS 录用。',
     },
-    badge: 'TNNLS',
+    badge: 'IEEE TNNLS',
   },
   {
     date: { en: 'Jan. 2025', zh: '2025.01' },
@@ -186,7 +186,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Residual Fuzzy Alignment on Hypergraph"</span> accepted by IEEE TMM.',
       zh: '论文<span class="hl">《Residual Fuzzy Alignment on Hypergraph》</span>被 IEEE TMM 录用。',
     },
-    badge: 'TMM',
+    badge: 'IEEE TMM',
   },
   {
     date: { en: 'Dec. 2024', zh: '2024.12' },
@@ -202,7 +202,7 @@ export const news: NewsItem[] = [
       en: 'Paper <span class="hl">"Hypergraph-Based Remaining Prototype Alignment"</span> accepted by IEEE TMM.',
       zh: '论文<span class="hl">《Hypergraph-Based Remaining Prototype Alignment》</span>被 IEEE TMM 录用。',
     },
-    badge: 'TMM',
+    badge: 'IEEE TMM',
   },
   {
     date: { en: 'Dec. 2024', zh: '2024.12' },
@@ -258,7 +258,7 @@ export const news: NewsItem[] = [
       en: 'One paper accepted by <span class="hl">IEEE TIP</span>.',
       zh: '一篇论文被 <span class="hl">IEEE TIP</span> 录用。',
     },
-    badge: 'TIP',
+    badge: 'IEEE TIP',
   },
   {
     date: { en: 'Feb. 2024', zh: '2024.02' },
@@ -314,7 +314,7 @@ export const news: NewsItem[] = [
       en: 'One paper accepted by <span class="hl">IEEE TNNLS</span>.',
       zh: '一篇论文被 <span class="hl">IEEE TNNLS</span> 录用。',
     },
-    badge: 'TNNLS',
+    badge: 'IEEE TNNLS',
   },
   {
     date: { en: 'Dec. 2022', zh: '2022.12' },
