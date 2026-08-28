@@ -205,10 +205,10 @@ export const news: NewsItem[] = [
     badge: 'TMM',
   },
   {
-    date: { en: 'Oct. 2024', zh: '2024.10' },
+    date: { en: 'Dec. 2024', zh: '2024.12' },
     html: {
-      en: 'Received the <span class="hl">First-class Comprehensive Excellence Scholarship</span>, Tsinghua University (2022–2024).',
-      zh: '获<span class="hl">清华大学综合优秀奖学金（一等）</span>（2022–2024）。',
+      en: 'Received the <span class="hl">First-class Comprehensive Excellence Scholarship</span>, Tsinghua University (third consecutive year, 2022–2024).',
+      zh: '获<span class="hl">清华大学综合优秀奖学金（一等）</span>（连续三年，2022–2024）。',
     },
     badge: 'Award',
   },

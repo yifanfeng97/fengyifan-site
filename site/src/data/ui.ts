@@ -45,7 +45,7 @@ export const sections = {
   honors: {
     id: 'honors',
     title: { en: 'Honors & Awards', zh: '荣誉奖项' } as I18n,
-    hint: '2022 — 2026',
+    hint: '2022 —',
   },
   news: {
     id: 'news',
@@ -66,7 +66,7 @@ export const sections = {
   researchPublications: {
     id: 'publications',
     title: { en: 'Publications', zh: '学术论文' } as I18n,
-    hint: '2018 — 2026',
+    hint: '2018 —',
     firstGroup: { en: 'First / Co-First Author', zh: '一作 / 学生一作 / 共同一作' } as I18n,
     coGroup: { en: 'Collaborative Papers', zh: '合作论文' } as I18n,
     papersUnit: { en: 'papers', zh: '篇' } as I18n,
@@ -77,7 +77,7 @@ export const sections = {
   grants: {
     id: 'grants',
     title: { en: 'Research Grants', zh: '科研项目' } as I18n,
-    hint: { en: 'Ongoing', zh: '在研' } as I18n,
+    hint: '2024 —',
   },
   opensource: {
     id: 'opensource',

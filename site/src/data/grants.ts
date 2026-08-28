@@ -64,17 +64,4 @@ export const grants: GrantItem[] = [
     fund: { en: '¥300K', zh: '30 万元' },
     role: { en: 'PI', zh: '主持' },
   },
-  {
-    years: '2026 — 2030',
-    name: {
-      en: 'National Science and Technology Major Project',
-      zh: '国家科技重大专项',
-    },
-    title: {
-      en: 'Brain-Inspired Hypergraph Foundation Model Based on Neural Computing Mechanisms',
-      zh: '基于神经计算机制的类脑超图大模型研究',
-    },
-    fund: { en: '¥5M', zh: '500 万元' },
-    role: { en: 'Participant', zh: '参与' },
-  },
 ];
