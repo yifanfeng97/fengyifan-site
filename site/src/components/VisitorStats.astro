@@ -103,7 +103,7 @@ const fmt = (n: number) => n.toLocaleString('en-US');
   }
   .v-total .num {
     font-size: 38px; color: var(--gold-bright);
-    font-variant-numeric: oldstyle-nums; line-height: 1;
+    font-variant-numeric: lining-nums; line-height: 1;
   }
   .v-total .cap { color: var(--muted); font-size: 14px; }
   .v-total .note { color: var(--faint); font-size: 12px; }
@@ -120,7 +120,7 @@ const fmt = (n: number) => n.toLocaleString('en-US');
   .v-card .nm { font-size: 19px; margin: 10px 0 6px; }
   .v-card .vl {
     font-size: 26px; color: var(--gold-bright);
-    font-variant-numeric: oldstyle-nums;
+    font-variant-numeric: lining-nums;
   }
   .v-rest {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
@@ -134,7 +134,7 @@ const fmt = (n: number) => n.toLocaleString('en-US');
   .v-mini .nm.dim { color: var(--muted); }
   .v-mini .vl {
     font-size: 13px; color: var(--muted);
-    font-variant-numeric: oldstyle-nums; white-space: nowrap;
+    font-variant-numeric: lining-nums; white-space: nowrap;
   }
   @media (max-width: 720px) {
     .v-podium { grid-template-columns: 1fr; }

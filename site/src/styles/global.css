@@ -11,7 +11,8 @@
   --text: #EDE9F5;
   --muted: #9A90B0;
   --faint: #6B6280;
-  --serif: Georgia, "Times New Roman", "Songti SC", "SimSun", serif;
+  /* Georgia 在 Android 等客户端缺失，补 Noto Serif / Palatino 兜底，保证数字字形一致 */
+  --serif: Georgia, "Palatino Linotype", "Times New Roman", "Noto Serif", "Songti SC", "SimSun", serif;
   --sans: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   --mono: Consolas, "SF Mono", "Courier New", monospace;
   --nav-h: 60px;
