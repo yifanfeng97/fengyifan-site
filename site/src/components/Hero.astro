@@ -57,7 +57,7 @@ const icons: Record<string, string> = {
       </div>
 
       <div class:list={['bio-label', { zh: lang === 'zh' }]}>{t(sections.about, lang)}</div>
-      {profile.bio[lang].map((para) => <p class="bio">{para}</p>)}
+      {profile.bio[lang].map((para) => <p class:list={['bio', { en: lang === 'en' }]}>{para}</p>)}
     </div>
   </div>
 </header>
@@ -175,6 +175,7 @@ const icons: Record<string, string> = {
     color: #C4BBD8; font-size: 15.5px; line-height: 1.9;
     text-align: justify;
   }
+  .bio.en { line-height: 1.75; }
   .bio + .bio { margin-top: 14px; }
   .bio:last-of-type { color: #D8D0E8; }
 
