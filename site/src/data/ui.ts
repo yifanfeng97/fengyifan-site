@@ -77,7 +77,7 @@ export const sections = {
   grants: {
     id: 'grants',
     title: { en: 'Research Grants', zh: '科研项目' } as I18n,
-    hint: { en: 'Principal Investigator', zh: '主持' } as I18n,
+    hint: { en: 'Ongoing', zh: '在研' } as I18n,
   },
   opensource: {
     id: 'opensource',
