@@ -67,7 +67,7 @@ const fmt = (n: number) => n.toLocaleString('en-US');
       <span class="cap">
         {isZh ? `总访问量 · ${entries.length} 个国家/地区` : `Total visits · ${entries.length} countries/regions`}
       </span>
-      <span class="note">{isZh ? '数据每 4 小时更新一次' : 'Updated every 4 hours'}</span>
+      <span class="note">{isZh ? '数据每 3 分钟更新一次' : 'Updated every 3 minutes'}</span>
     </div>
     <div class="v-pills">
       {shown.map(([key, v]) => (

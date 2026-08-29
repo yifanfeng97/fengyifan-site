@@ -1,16 +1,18 @@
-# Every 4 hours: pull per-country visitor stats from the Microsoft Clarity
-# Data Export API, commit the updated data files, then rebuild and redeploy
-# the site.
+# Every 3 minutes: pull per-country visitor stats from the Cloudflare
+# GraphQL Analytics API (RUM pageviews), commit the updated data files, then
+# rebuild and redeploy the site.
 # Note: a push made with GITHUB_TOKEN does not trigger the Deploy workflow,
-# so this job redeploys the site itself after committing.
+# so this job redeploys the site itself after committing. Runs with no data
+# change exit before the build/deploy steps.
 #
-# Required secret: CLARITY_TOKEN (Clarity project → Settings → Data Export).
+# Required secrets: CF_API_TOKEN (My Profile → API Tokens, Analytics: Read),
+# CF_ACCOUNT_ID, CF_SITE_TAG (Web Analytics site tag).
 
 name: Sync visitor stats
 
 on:
   schedule:
-    - cron: "41 */4 * * *" # every 4 hours (UTC 00:41/04:41/... = Beijing 08:41/12:41/...)
+    - cron: "2-59/3 * * * *" # every 3 minutes, offset from :00/:30 herd times
   workflow_dispatch:
 
 permissions:
@@ -26,10 +28,12 @@ jobs:
         with:
           node-version: 20
 
-      - name: Pull Clarity stats
+      - name: Pull Cloudflare stats
         working-directory: site
         env:
-          CLARITY_TOKEN: ${{ secrets.CLARITY_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_SITE_TAG: ${{ secrets.CF_SITE_TAG }}
         run: node scripts/sync-visitors.mjs
 
       - name: Commit visitor data

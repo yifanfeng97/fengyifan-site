@@ -1,18 +1,17 @@
-// Pull last-24h per-country visitor counts from the Microsoft Clarity Data
-// Export API and maintain visitors-daily.json / visitors.json.
+// Pull per-country visitor counts (pageviews) from the Cloudflare GraphQL
+// Analytics API (RUM dataset) and maintain visitors-daily.json / visitors.json.
 //
-// 算法（临时值 + 定稿）：
-// Clarity 只能给"过去 24h"的滚动窗口聚合，没有日期维度，无法按自然日
-// 精确拆分。因此每天的数据分两种状态：
-// - 当天条目为临时值（final: false），每班更新：
-//   临时值 = max(0, 当前滚动样本 − 昨天定稿样本)（按国家逐项），
-//   近似"今天截至目前"，越接近午夜越准。
-// - 新一天早晨（UTC 0–8 点的班次）拉到非空数据时，滚动窗口
-//   [昨天凌晨 → 今天凌晨] 恰为"昨天全天"的最佳近似，用它把昨天的
-//   条目覆盖并定稿（final: true），此后不再改动。
-// 防御：API 返回空数据时不写任何条目，避免把已有数据覆盖成空。
+// 算法（精确自然日窗口，临时值 + 定稿）：
+// - Cloudflare 支持任意时间段查询，因此每天的数据就是当天
+//   00:00:00Z → 次日 00:00:00Z 的精确聚合，不需要滚动窗口近似。
+// - 当天条目为临时值（final: false），每次运行刷新为"今天截至目前"。
+// - 每次运行都会检查最近 7 天内所有未定稿的过去日期，用精确窗口
+//   补记并定稿（final: true）——任务中断后能自动回填，7 天后
+//   Cloudflare 端会降采样，所以只回填 7 天。
+// - 全链路统一 UTC（Actions cron、查询窗口、daily 日期键）。
 //
-// Usage: CLARITY_TOKEN=<token> node scripts/sync-visitors.mjs
+// Usage: CF_API_TOKEN=<token> CF_ACCOUNT_ID=<id> CF_SITE_TAG=<tag> \
+//          node scripts/sync-visitors.mjs
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -22,75 +21,114 @@ const here = dirname(fileURLToPath(import.meta.url));
 const dailyPath = join(here, '../src/data/visitors-daily.json');
 const aggPath = join(here, '../src/data/visitors.json');
 
-const token = process.env.CLARITY_TOKEN;
-if (!token) {
-  console.error('CLARITY_TOKEN environment variable is required');
+const { CF_API_TOKEN, CF_ACCOUNT_ID, CF_SITE_TAG } = process.env;
+if (!CF_API_TOKEN || !CF_ACCOUNT_ID || !CF_SITE_TAG) {
+  console.error('CF_API_TOKEN, CF_ACCOUNT_ID and CF_SITE_TAG are required');
   process.exit(1);
 }
 
-// Clarity "Country/Region" names → canonical keys in visitors.json.
-// Kept for continuity with historical data; extend as new mismatches show up.
-const NAME_MAP = {
-  'United States': 'United States of America',
+// ISO alpha-2 国家/地区代码 → visitors.json 里的规范英文键
+// （与 src/components/VisitorStats.astro 的 ZH_NAMES 对应，未列出的回退为代码本身）。
+const CODE_MAP = {
+  CN: 'China',
+  HK: 'Hong Kong',
+  TW: 'Taiwan',
+  MO: 'Macau',
+  US: 'United States of America',
+  SG: 'Singapore',
+  JP: 'Japan',
+  GB: 'United Kingdom',
+  DE: 'Germany',
+  KR: 'South Korea',
+  CA: 'Canada',
+  AU: 'Australia',
+  FR: 'France',
+  IN: 'India',
+  NL: 'Netherlands',
+  CH: 'Switzerland',
+  IT: 'Italy',
+  SE: 'Sweden',
+  ES: 'Spain',
+  IL: 'Israel',
+  DK: 'Denmark',
+  BE: 'Belgium',
+  AT: 'Austria',
+  BR: 'Brazil',
+  RU: 'Russia',
+  FI: 'Finland',
+  IE: 'Ireland',
+  PL: 'Poland',
+  NZ: 'New Zealand',
+  NO: 'Norway',
+  MY: 'Malaysia',
+  TH: 'Thailand',
+  VN: 'Vietnam',
+  ID: 'Indonesia',
+  PH: 'Philippines',
+  MX: 'Mexico',
+  AR: 'Argentina',
+  CL: 'Chile',
+  CO: 'Colombia',
+  ZA: 'South Africa',
+  EG: 'Egypt',
+  NG: 'Nigeria',
+  TR: 'Turkey',
+  SA: 'Saudi Arabia',
+  AE: 'United Arab Emirates',
+  UA: 'Ukraine',
+  CZ: 'Czechia',
+  PT: 'Portugal',
+  GR: 'Greece',
+  HU: 'Hungary',
+  RO: 'Romania',
 };
 
-const url =
-  'https://www.clarity.ms/export-data/api/v1/project-live-insights?numOfDays=1&dimension1=' +
-  encodeURIComponent('Country/Region');
-
-const res = await fetch(url, {
-  headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-});
-if (!res.ok) {
-  console.error(`Clarity API error ${res.status}: ${await res.text()}`);
-  process.exit(1);
-}
-
-const payload = await res.json();
-// 诊断日志：列出返回里每个指标的行数，方便排查空数据问题。
-if (Array.isArray(payload)) {
-  console.log(
-    'Clarity metrics: ' +
-      payload.map((m) => `${m.metricName}(${(m.information ?? []).length})`).join(', '),
-  );
-}
-// 兼容 Clarity 的返回结构变化：分国家明细行曾经挂在 Traffic 指标下
-// （字段 Country/Region + totalSessionCount/totalBotSessionCount），
-// 现在在独立的 Country 指标里（字段 name + sessionsCount，无 bot 拆分）。
-const metrics = Array.isArray(payload) ? payload : [];
-const countryMetric =
-  metrics.find((m) => (m.information ?? []).some((r) => r['Country/Region'])) ??
-  metrics.find((m) => m.metricName === 'Country');
-const rows = countryMetric?.information ?? [];
-
-// 当前滚动样本：过去 24h 分国家的会话数。
-const sample = {};
-for (const row of rows) {
-  const raw = row['Country/Region'] ?? row.name;
-  if (!raw) continue;
-  const name = NAME_MAP[raw] ?? raw;
-  // 旧结构可剔除 bot 会话；新结构只有总会话数，可能略含 bot。
-  const humans =
-    row.sessionsCount != null
-      ? Number(row.sessionsCount)
-      : Math.max(0, Number(row.totalSessionCount ?? 0) - Number(row.totalBotSessionCount ?? 0));
-  if (!(humans > 0)) continue;
-  sample[name] = (sample[name] ?? 0) + humans;
-}
-const hasData = Object.keys(sample).length > 0;
-if (!hasData) {
-  console.log('Clarity returned no country rows; keeping existing data untouched');
+/** 查询 [geq, lt) 窗口内分国家的 pageview 数。 */
+async function queryCounts(geq, lt) {
+  const query = `{
+    viewer {
+      accounts(filter: { accountTag: "${CF_ACCOUNT_ID}" }) {
+        rumPageloadEventsAdaptiveGroups(
+          limit: 500
+          filter: { siteTag: "${CF_SITE_TAG}", datetime_geq: "${geq}", datetime_lt: "${lt}" }
+        ) {
+          count
+          dimensions { countryName }
+        }
+      }
+    }
+  }`;
+  const res = await fetch('https://api.cloudflare.com/client/v4/graphql', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${CF_API_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query }),
+  });
+  if (!res.ok) {
+    throw new Error(`Cloudflare API HTTP error ${res.status}: ${await res.text()}`);
+  }
+  const payload = await res.json();
+  if (payload.errors?.length) {
+    throw new Error(`Cloudflare API error: ${JSON.stringify(payload.errors)}`);
+  }
+  const groups = payload.data?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups ?? [];
+  const counts = {};
+  for (const g of groups) {
+    const code = g.dimensions?.countryName;
+    const value = Number(g.count ?? 0);
+    if (!code || value <= 0) continue;
+    const name = CODE_MAP[code] ?? code;
+    counts[name] = (counts[name] ?? 0) + value;
+  }
+  return counts;
 }
 
 const DAY = 24 * 3600 * 1000;
-const now = Date.now();
-const today = new Date(now).toISOString().slice(0, 10); // UTC date
-const yesterday = new Date(now - DAY).toISOString().slice(0, 10);
-const hour = new Date(now).getUTCHours();
+const now = new Date();
+const today = now.toISOString().slice(0, 10); // UTC date
+const dayStart = (date) => `${date}T00:00:00Z`;
+const nextDay = (date) => new Date(Date.parse(dayStart(date)) + DAY).toISOString().slice(0, 10);
 
 // 兼容旧格式 {date: {country: n}} → {date: {final, counts}}。
-// 历史条目中只有非空的才视为已定稿；空条目（曾被空响应覆盖的日子）
-// 保持临时状态，留给次日早晨的班次修正。
 const raw = JSON.parse(readFileSync(dailyPath, 'utf8'));
 const daily = {};
 for (const [date, entry] of Object.entries(raw)) {
@@ -102,32 +140,26 @@ for (const [date, entry] of Object.entries(raw)) {
   }
 }
 
-// 1) 定稿昨天。只有次日早晨（UTC 0–8 点）的非空样本才是"昨天全天"的
-//    有效近似；过了早晨还没定稿就冻结现有临时值，不再等待。
-const y = daily[yesterday];
-if (y && !y.final) {
-  if (hasData && hour < 8) y.counts = sample;
-  y.final = true;
-} else if (!y && hasData && hour < 8) {
-  // 首次运行或缺了一天：直接用当前样本补记昨天。
-  daily[yesterday] = { final: true, counts: sample };
-}
-
-// 2) 更新今天的临时值 = 当前样本 − 昨天定稿样本（按国家，不为负）。
-//    昨天还没定稿时（如首日）退化为直接使用当前样本。
-if (hasData) {
-  const base = daily[yesterday]?.final ? daily[yesterday].counts : null;
-  const prov = {};
-  for (const [name, value] of Object.entries(sample)) {
-    const diff = value - (base?.[name] ?? 0);
-    if (diff > 0) prov[name] = diff;
+try {
+  // 1) 回填并定稿最近 7 天内的未定稿过去日期（含缺失的日期）。
+  //    7 天是 Cloudflare 未采样数据的保留期，超过后准确度下降，不再回填。
+  for (let i = 7; i >= 1; i--) {
+    const date = new Date(Date.parse(dayStart(today)) - i * DAY).toISOString().slice(0, 10);
+    if (daily[date]?.final) continue;
+    const counts = await queryCounts(dayStart(date), dayStart(nextDay(date)));
+    // 空结果视为当天确实没有访问，同样定稿。
+    daily[date] = { final: true, counts };
+    console.log(`Finalized ${date}: ${Object.values(counts).reduce((s, v) => s + v, 0)} pageviews`);
   }
-  daily[today] = { final: false, counts: prov };
-}
 
-// 3) 更早的临时条目（比如停跑了几天）直接冻结，不再有机会修正。
-for (const [date, entry] of Object.entries(daily)) {
-  if (!entry.final && date < yesterday) entry.final = true;
+  // 2) 今天的临时值：00:00:00Z → 现在。
+  const counts = await queryCounts(dayStart(today), now.toISOString());
+  daily[today] = { final: false, counts };
+  console.log(`Today ${today} so far: ${Object.values(counts).reduce((s, v) => s + v, 0)} pageviews`);
+} catch (err) {
+  // 保底：查询失败时不写任何文件，页面上保留最近一次成功的数据。
+  console.error(err.message);
+  process.exit(1);
 }
 
 writeFileSync(dailyPath, JSON.stringify(daily, null, 2) + '\n');
@@ -139,8 +171,3 @@ for (const entry of Object.values(daily)) {
   }
 }
 writeFileSync(aggPath, JSON.stringify(agg, null, 2) + '\n');
-
-console.log(
-  `Synced ${Object.keys(sample).length} countries at ${today} ${hour}:00 UTC; ` +
-    `yesterday ${yesterday} final=${daily[yesterday]?.final ?? 'n/a'}`,
-);
