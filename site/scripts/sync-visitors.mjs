@@ -54,27 +54,27 @@ if (Array.isArray(payload)) {
       payload.map((m) => `${m.metricName}(${(m.information ?? []).length})`).join(', '),
   );
 }
-// 兼容 Clarity 的返回结构变化：分国家明细行曾经挂在 Traffic 指标下，
-// 现在在独立的 Country 指标里。直接找"行里带 Country/Region 字段"的那个指标。
+// 兼容 Clarity 的返回结构变化：分国家明细行曾经挂在 Traffic 指标下
+// （字段 Country/Region + totalSessionCount/totalBotSessionCount），
+// 现在在独立的 Country 指标里（字段 name + sessionsCount，无 bot 拆分）。
 const metrics = Array.isArray(payload) ? payload : [];
-const countryMetric = metrics.find((m) =>
-  (m.information ?? []).some((r) => r['Country/Region']),
-);
+const countryMetric =
+  metrics.find((m) => (m.information ?? []).some((r) => r['Country/Region'])) ??
+  metrics.find((m) => m.metricName === 'Country');
 const rows = countryMetric?.information ?? [];
-// 诊断：打印 Country 指标的第一行，确认字段名。
-const countryRows = metrics.find((m) => m.metricName === 'Country')?.information ?? [];
-if (countryRows.length > 0) {
-  console.log('Country row sample: ' + JSON.stringify(countryRows[0]));
-}
 
-// 当前滚动样本：过去 24h 分国家的人类会话数。
+// 当前滚动样本：过去 24h 分国家的会话数。
 const sample = {};
 for (const row of rows) {
-  const raw = row['Country/Region'];
+  const raw = row['Country/Region'] ?? row.name;
   if (!raw) continue;
   const name = NAME_MAP[raw] ?? raw;
-  const humans = Math.max(0, Number(row.totalSessionCount ?? 0) - Number(row.totalBotSessionCount ?? 0));
-  if (humans <= 0) continue;
+  // 旧结构可剔除 bot 会话；新结构只有总会话数，可能略含 bot。
+  const humans =
+    row.sessionsCount != null
+      ? Number(row.sessionsCount)
+      : Math.max(0, Number(row.totalSessionCount ?? 0) - Number(row.totalBotSessionCount ?? 0));
+  if (!(humans > 0)) continue;
   sample[name] = (sample[name] ?? 0) + humans;
 }
 const hasData = Object.keys(sample).length > 0;
