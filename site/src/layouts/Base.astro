@@ -37,6 +37,8 @@ const { lang, page, title } = Astro.props;
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+  <!-- Cloudflare Web Analytics -->
+  <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1a44943f3d6d4cf783ecbf2b43d71a49"}'></script>
 </head>
 <body>
   <Nav lang={lang} page={page} />
