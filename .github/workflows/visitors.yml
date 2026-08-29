@@ -1,6 +1,11 @@
-# Every 3 minutes: pull per-country visitor stats from the Cloudflare
-# GraphQL Analytics API (RUM pageviews), commit the updated data files, then
-# rebuild and redeploy the site.
+# Triggered externally every 3 minutes: a cron service (cron-job.org) POSTs a
+# repository_dispatch event, which GitHub processes immediately (unlike
+# schedule, which is unreliable at high frequency). The schedule below is only
+# a fallback in case the external trigger goes silent.
+#
+# This job pulls per-country visitor stats from the Cloudflare GraphQL
+# Analytics API (RUM pageviews), commits the updated data files, then rebuilds
+# and redeploys the site.
 # Note: a push made with GITHUB_TOKEN does not trigger the Deploy workflow,
 # so this job redeploys the site itself after committing. Runs with no data
 # change exit before the build/deploy steps.
@@ -11,8 +16,10 @@
 name: Sync visitor stats
 
 on:
+  repository_dispatch:
+    types: [sync-visitors]
   schedule:
-    - cron: "2-59/3 * * * *" # every 3 minutes, offset from :00/:30 herd times
+    - cron: "7-59/30 * * * *" # fallback: every 30 minutes at :07/:37
   workflow_dispatch:
 
 permissions:
