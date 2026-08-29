@@ -54,8 +54,13 @@ if (Array.isArray(payload)) {
       payload.map((m) => `${m.metricName}(${(m.information ?? []).length})`).join(', '),
   );
 }
-const traffic = (Array.isArray(payload) ? payload : []).find((m) => m.metricName === 'Traffic');
-const rows = traffic?.information ?? [];
+// 兼容 Clarity 的返回结构变化：分国家明细行曾经挂在 Traffic 指标下，
+// 现在在独立的 Country 指标里。直接找"行里带 Country/Region 字段"的那个指标。
+const metrics = Array.isArray(payload) ? payload : [];
+const countryMetric = metrics.find((m) =>
+  (m.information ?? []).some((r) => r['Country/Region']),
+);
+const rows = countryMetric?.information ?? [];
 
 // 当前滚动样本：过去 24h 分国家的人类会话数。
 const sample = {};
@@ -64,6 +69,7 @@ for (const row of rows) {
   if (!raw) continue;
   const name = NAME_MAP[raw] ?? raw;
   const humans = Math.max(0, Number(row.totalSessionCount ?? 0) - Number(row.totalBotSessionCount ?? 0));
+  if (humans <= 0) continue;
   sample[name] = (sample[name] ?? 0) + humans;
 }
 const hasData = Object.keys(sample).length > 0;
