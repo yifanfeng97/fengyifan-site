@@ -61,6 +61,11 @@ const countryMetric = metrics.find((m) =>
   (m.information ?? []).some((r) => r['Country/Region']),
 );
 const rows = countryMetric?.information ?? [];
+// 诊断：打印 Country 指标的第一行，确认字段名。
+const countryRows = metrics.find((m) => m.metricName === 'Country')?.information ?? [];
+if (countryRows.length > 0) {
+  console.log('Country row sample: ' + JSON.stringify(countryRows[0]));
+}
 
 // 当前滚动样本：过去 24h 分国家的人类会话数。
 const sample = {};
