@@ -47,6 +47,13 @@ if (!res.ok) {
 }
 
 const payload = await res.json();
+// 诊断日志：列出返回里每个指标的行数，方便排查空数据问题。
+if (Array.isArray(payload)) {
+  console.log(
+    'Clarity metrics: ' +
+      payload.map((m) => `${m.metricName}(${(m.information ?? []).length})`).join(', '),
+  );
+}
 const traffic = (Array.isArray(payload) ? payload : []).find((m) => m.metricName === 'Traffic');
 const rows = traffic?.information ?? [];
 
