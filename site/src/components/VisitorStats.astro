@@ -60,7 +60,6 @@ const fmt = (n: number) => n.toLocaleString('en-US');
   <section id={sections.visitors.id}>
     <div class="v-head">
       <span class="rule"></span>
-      <span class="src">{sections.visitors.hint}</span>
     </div>
     <div class="v-total">
       <span class="num">{fmt(total)}</span>
@@ -89,12 +88,7 @@ const fmt = (n: number) => n.toLocaleString('en-US');
   }
   .v-head .rule {
     flex: 1; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 106, .35), rgba(124, 58, 237, .55));
-  }
-  .v-head .src {
-    font-family: var(--serif); font-style: italic;
-    font-size: 13px; color: var(--faint);
-    letter-spacing: .1em; white-space: nowrap;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, .55), rgba(212, 175, 106, .45), rgba(124, 58, 237, .55), transparent);
   }
   .v-total {
     text-align: center; margin-bottom: 28px;
