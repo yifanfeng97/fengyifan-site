@@ -12,19 +12,30 @@ export const profile = {
   } as I18n,
   tags: [
     'AI for Science',
-    { en: 'Correlation Learning', zh: '关联学习' },
+    { en: 'High-Order Correlation Computing', zh: '高阶关联计算' },
+    { en: 'High-Order Pattern Discovery', zh: '高阶模式发现' },
   ] as I18n[],
+  motto: {
+    main: {
+      en: 'Making high-order patterns at every scale computable, discoverable, and designable',
+      zh: '让每一个尺度上的高阶模式都可计算、可发现、可设计',
+    } as I18n,
+    accent: {
+      en: 'Understand physics, design molecules, decode life',
+      zh: '理解物理，设计分子，解析生命',
+    } as I18n,
+  },
   bio: {
     en: [
-      'My research focuses on AI for Science — taking hypergraphs as a new tool for scientific discovery and exploring high-order-correlation-driven computing paradigms, with applications in real-world scenarios such as geometric correlation modeling, protein structure modeling, and tumor microenvironment analysis.',
       'I lead projects including an NSFC General Program, an NSFC Young Student Basic Research Program (PhD Candidate), and a subproject of a national major S&T program. I have published 40+ papers in Nature Communications, IEEE TPAMI (14 papers), ICLR, etc., with 7500+ Google Scholar citations; my most cited first-author paper has been cited 3000+ times. I led the development of DeepHypergraph, the first hypergraph computation toolbox, and Hyper-Extract, a hypergraph knowledge reasoning toolkit that ranked 2nd on GitHub Trending.',
-      'Feel free to reach out if you are interested in these directions or would like to collaborate.',
+      'My research centers on high-order correlation computing and pattern discovery. The principles of complex systems often lie not in individual elements, but in how a group of elements co-occur and co-configure — such higher-order correlations are what I make computable. Using hypergraphs as a new tool, I build modeling theory, algorithms, and systems for high-order correlations, and characterize their capability boundaries.',
+      'Looking ahead, I am working toward autonomous scientific discovery driven by high-order correlations, from physical intelligence and protein design to tumor microenvironment analysis. Feel free to reach out if you are interested in these directions.',
       'I am currently on the job market for faculty positions, mainly in Beijing — any information or referrals would be greatly appreciated.',
     ],
     zh: [
-      '研究方向为 AI4Science，致力于将超图作为科学发现的新工具，探索高阶关联驱动的科学计算新范式，应用于几何关联建模、蛋白质结构建模、肿瘤微环境关联解析等真实场景。',
-      '主持国自然面上项目、国自然博士生基金、国家科技重大专项子课题等。在 Nature Communications、IEEE TPAMI（14 篇）、ICLR 等发表论文 40 余篇，谷歌学术引用 7500 余次，一作论文单篇最高引用 3000 余次。主导构建首个超图计算工具箱 DeepHypergraph 与超图知识推理工具库 Hyper-Extract（GitHub 趋势榜全球第二）。',
-      '如果你对上述方向感兴趣，或希望交流合作，欢迎随时与我联系。',
+      '主持国自然面上项目、国自然博士生基础研究项目、国家科技重大专项子课题等。在 Nature Communications、IEEE TPAMI（14 篇）、ICLR 等发表论文 40 余篇，谷歌学术引用 7500 余次，一作论文单篇最高引用 3000 余次。主导构建首个超图计算工具箱 DeepHypergraph 与超图知识推理工具库 Hyper-Extract（GitHub 趋势榜全球第二）。',
+      '我的研究围绕高阶关联计算与模式发现。复杂系统的规律往往不取决于单个要素，而取决于一组要素共同出现、共同构型的方式——让这类高阶关联可计算，正是我做的事。我以超图为新工具，建立高阶关联的建模理论、算法与计算系统，并刻画其能力边界。',
+      '未来，我致力于推动高阶关联驱动的自主科学发现，从物理智能、蛋白质设计到肿瘤微环境解析，发现高阶模式，走向自主设计。如果你对上述方向感兴趣，欢迎随时与我联系。',
       '目前我正在寻找教职（主要在北京），如有合适的机会或信息，欢迎推荐，非常感谢。',
     ],
   },

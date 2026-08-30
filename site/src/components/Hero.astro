@@ -42,6 +42,15 @@ const icons: Record<string, string> = {
           <a href={s.href} target="_blank" rel="noopener" title={s.label} aria-label={s.label} set:html={icons[s.icon]} />
         ))}
       </div>
+
+      <div class="motto">
+        <div class="motto-rule" aria-hidden="true"><span></span><i></i><span></span></div>
+        <p class:list={['motto-text', { zh: lang === 'zh' }]}>
+          <span class="motto-line">{t(profile.motto.main, lang)}</span>
+          <span class="motto-line motto-accent">{t(profile.motto.accent, lang)}</span>
+        </p>
+        <div class="motto-rule" aria-hidden="true"><span></span><i></i><span></span></div>
+      </div>
     </div>
 
     <div class="hero-right">
@@ -117,8 +126,7 @@ const icons: Record<string, string> = {
     transition: all .25s ease;
   }
   .tag:hover { background: rgba(124, 58, 237, .22); box-shadow: 0 0 14px rgba(124, 58, 237, .3); transform: translateY(-1px); }
-  .socials { margin-top: 22px; display: flex; justify-content: center; gap: 14px; }
-  .socials a {
+  .socials { margin-top: 22px; display: flex; justify-content: center; gap: 14px; }  .socials a {
     display: inline-flex; align-items: center; justify-content: center;
     width: 48px; height: 48px; border-radius: 50%;
     color: var(--muted);
@@ -130,6 +138,51 @@ const icons: Record<string, string> = {
     color: var(--gold-bright); border-color: rgba(212, 175, 106, .55);
     background: rgba(212, 175, 106, .1);
     box-shadow: 0 0 16px rgba(124, 58, 237, .35);
+  }
+
+  /* ---------- motto: gold-ruled epigraph under the identity block ---------- */
+  .motto {
+    margin-top: 30px;
+    width: 100%; max-width: 400px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+  }
+  .motto-rule {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%;
+  }
+  .motto-rule span {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 106, .6));
+  }
+  .motto-rule span:last-child {
+    background: linear-gradient(90deg, rgba(212, 175, 106, .6), transparent);
+  }
+  .motto-rule i {
+    width: 5px; height: 5px; transform: rotate(45deg);
+    background: var(--gold);
+    box-shadow: 0 0 8px rgba(212, 175, 106, .7);
+  }
+  .motto-text {
+    margin: 15px 0;
+    font-family: var(--serif); font-style: italic;
+    font-size: 14.5px; line-height: 1.95; letter-spacing: .02em;
+    text-wrap: pretty;
+    background: linear-gradient(180deg, #E9D9B8 25%, var(--gold) 75%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .motto-text.zh {
+    font-style: normal;
+    font-size: 13.5px; letter-spacing: .06em;
+  }
+  .motto-line { display: block; }
+  .motto-line + .motto-line { margin-top: 5px; }
+  .motto-accent {
+    background: linear-gradient(180deg, #F3E3BC 20%, var(--gold-bright) 80%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
   }
 
   /* ---------- education atop the right column ---------- */
