@@ -10175,7 +10175,7 @@
     "counts": {}
   },
   "2026-08-29": {
-    "final": false,
+    "final": true,
     "counts": {
       "Australia": 22,
       "Thailand": 1,
@@ -10186,5 +10186,9 @@
       "United States of America": 84,
       "India": 7
     }
+  },
+  "2026-08-30": {
+    "final": false,
+    "counts": {}
   }
 }
