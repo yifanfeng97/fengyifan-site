@@ -10188,7 +10188,7 @@
     }
   },
   "2026-08-30": {
-    "final": false,
+    "final": true,
     "counts": {
       "United Arab Emirates": 3,
       "France": 1,
@@ -10202,5 +10202,9 @@
       "United States of America": 20,
       "United Kingdom": 3
     }
+  },
+  "2026-08-31": {
+    "final": false,
+    "counts": {}
   }
 }
