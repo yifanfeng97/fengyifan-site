@@ -1,12 +1,12 @@
 {
-  "China": 4314,
-  "United States of America": 1549,
+  "China": 4297,
+  "United States of America": 1569,
   "Switzerland": 103,
   "Italy": 73,
-  "Hong Kong": 837,
+  "Hong Kong": 840,
   "Australia": 156,
-  "Germany": 221,
-  "Singapore": 689,
+  "Germany": 213,
+  "Singapore": 691,
   "Brazil": 36,
   "Canada": 154,
   "Netherlands": 106,
@@ -31,5 +31,8 @@
   "Turkey": 1,
   "United Arab Emirates": 3,
   "Macau": 4,
-  "SV": 1
+  "SV": 1,
+  "Vietnam": 1,
+  "IR": 1,
+  "DZ": 1
 }
