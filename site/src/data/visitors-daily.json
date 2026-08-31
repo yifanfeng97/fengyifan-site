@@ -10206,8 +10206,11 @@
   "2026-08-31": {
     "final": false,
     "counts": {
-      "China": 10,
-      "Hong Kong": 10
+      "Vietnam": 1,
+      "China": 9,
+      "Hong Kong": 9,
+      "United States of America": 12,
+      "DZ": 1
     }
   }
 }
