@@ -10223,14 +10223,11 @@
   "2026-09-01": {
     "final": false,
     "counts": {
-      "Japan": 8,
-      "Singapore": 15,
-      "China": 49,
-      "Hong Kong": 27,
-      "United States of America": 17,
-      "Mexico": 1,
-      "New Zealand": 1,
-      "Spain": 5
+      "Singapore": 20,
+      "China": 40,
+      "Hong Kong": 30,
+      "Mexico": 10,
+      "New Zealand": 10
     }
   }
 }
