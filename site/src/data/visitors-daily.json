@@ -10236,13 +10236,15 @@
   "2026-09-02": {
     "final": false,
     "counts": {
+      "MA": 1,
       "Vietnam": 1,
       "OM": 1,
+      "Brazil": 1,
       "MN": 1,
       "Singapore": 1,
       "China": 1,
       "Hong Kong": 3,
-      "VE": 1,
+      "VE": 2,
       "United States of America": 1,
       "South Africa": 1,
       "IQ": 1

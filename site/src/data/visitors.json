@@ -7,7 +7,7 @@
   "Australia": 156,
   "Germany": 213,
   "Singapore": 721,
-  "Brazil": 36,
+  "Brazil": 37,
   "Canada": 154,
   "Netherlands": 106,
   "South Korea": 194,
@@ -37,9 +37,10 @@
   "DZ": 1,
   "Taiwan": 1,
   "Mexico": 1,
+  "MA": 1,
   "OM": 1,
   "MN": 1,
-  "VE": 1,
+  "VE": 2,
   "South Africa": 1,
   "IQ": 1
 }
