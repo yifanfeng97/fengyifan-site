@@ -10221,7 +10221,7 @@
     }
   },
   "2026-09-01": {
-    "final": false,
+    "final": true,
     "counts": {
       "Japan": 11,
       "Singapore": 18,
@@ -10232,5 +10232,9 @@
       "New Zealand": 1,
       "Spain": 5
     }
+  },
+  "2026-09-02": {
+    "final": false,
+    "counts": {}
   }
 }
