@@ -10236,9 +10236,19 @@
   "2026-09-02": {
     "final": false,
     "counts": {
-      "Brazil": 10,
-      "China": 10,
-      "VE": 10
+      "MA": 1,
+      "Vietnam": 1,
+      "Japan": 2,
+      "OM": 1,
+      "Brazil": 1,
+      "MN": 1,
+      "Singapore": 11,
+      "China": 19,
+      "Hong Kong": 7,
+      "VE": 2,
+      "United States of America": 2,
+      "South Africa": 1,
+      "IQ": 1
     }
   }
 }
