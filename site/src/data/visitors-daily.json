@@ -10235,6 +10235,8 @@
   },
   "2026-09-02": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "Vietnam": 1
+    }
   }
 }
