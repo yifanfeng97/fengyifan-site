@@ -10254,10 +10254,13 @@
   "2026-09-03": {
     "final": false,
     "counts": {
-      "Japan": 30,
-      "China": 60,
-      "Hong Kong": 10,
-      "United States of America": 30
+      "Germany": 1,
+      "Japan": 15,
+      "Singapore": 6,
+      "China": 77,
+      "Hong Kong": 21,
+      "United States of America": 18,
+      "United Kingdom": 1
     }
   }
 }
