@@ -10234,7 +10234,7 @@
     }
   },
   "2026-09-02": {
-    "final": false,
+    "final": true,
     "counts": {
       "MA": 1,
       "Vietnam": 1,
@@ -10245,10 +10245,14 @@
       "Singapore": 12,
       "China": 19,
       "Hong Kong": 7,
-      "United States of America": 2,
       "VE": 2,
+      "United States of America": 2,
       "South Africa": 1,
       "IQ": 1
     }
+  },
+  "2026-09-03": {
+    "final": false,
+    "counts": {}
   }
 }
