@@ -10266,12 +10266,8 @@
   "2026-09-04": {
     "final": false,
     "counts": {
-      "Singapore": 4,
-      "China": 30,
-      "Ukraine": 1,
-      "Hong Kong": 9,
-      "United States of America": 6,
-      "South Africa": 1
+      "China": 10,
+      "Hong Kong": 10
     }
   }
 }
