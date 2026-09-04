@@ -10252,7 +10252,7 @@
     }
   },
   "2026-09-03": {
-    "final": false,
+    "final": true,
     "counts": {
       "Germany": 1,
       "Japan": 15,
@@ -10262,5 +10262,9 @@
       "United States of America": 34,
       "United Kingdom": 1
     }
+  },
+  "2026-09-04": {
+    "final": false,
+    "counts": {}
   }
 }
