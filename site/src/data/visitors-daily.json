@@ -10278,6 +10278,14 @@
   },
   "2026-09-05": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "Australia": 2,
+      "Japan": 15,
+      "Singapore": 2,
+      "China": 17,
+      "Hong Kong": 1,
+      "United States of America": 4,
+      "India": 1
+    }
   }
 }
