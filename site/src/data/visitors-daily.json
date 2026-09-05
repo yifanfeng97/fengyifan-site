@@ -10264,7 +10264,7 @@
     }
   },
   "2026-09-04": {
-    "final": false,
+    "final": true,
     "counts": {
       "Ireland": 1,
       "Singapore": 6,
@@ -10275,5 +10275,9 @@
       "VE": 1,
       "South Africa": 1
     }
+  },
+  "2026-09-05": {
+    "final": false,
+    "counts": {}
   }
 }
