@@ -10290,11 +10290,6 @@
   },
   "2026-09-06": {
     "final": false,
-    "counts": {
-      "Japan": 3,
-      "Singapore": 2,
-      "China": 5,
-      "Hong Kong": 3
-    }
+    "counts": {}
   }
 }
