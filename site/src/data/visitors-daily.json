@@ -10277,7 +10277,7 @@
     }
   },
   "2026-09-05": {
-    "final": false,
+    "final": true,
     "counts": {
       "Australia": 2,
       "Japan": 15,
@@ -10287,5 +10287,9 @@
       "United States of America": 5,
       "India": 1
     }
+  },
+  "2026-09-06": {
+    "final": false,
+    "counts": {}
   }
 }
