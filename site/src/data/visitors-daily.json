@@ -10289,7 +10289,7 @@
     }
   },
   "2026-09-06": {
-    "final": false,
+    "final": true,
     "counts": {
       "Japan": 4,
       "Singapore": 4,
@@ -10299,5 +10299,9 @@
       "Colombia": 1,
       "Taiwan": 4
     }
+  },
+  "2026-09-07": {
+    "final": false,
+    "counts": {}
   }
 }
