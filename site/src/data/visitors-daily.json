@@ -10302,6 +10302,8 @@
   },
   "2026-09-07": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "France": 1
+    }
   }
 }
