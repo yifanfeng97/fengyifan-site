@@ -10301,7 +10301,7 @@
     }
   },
   "2026-09-07": {
-    "final": false,
+    "final": true,
     "counts": {
       "Australia": 1,
       "Japan": 3,
@@ -10315,5 +10315,9 @@
       "Malaysia": 2,
       "Taiwan": 1
     }
+  },
+  "2026-09-08": {
+    "final": false,
+    "counts": {}
   }
 }
