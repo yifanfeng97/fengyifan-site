@@ -10319,7 +10319,10 @@
   "2026-09-08": {
     "final": false,
     "counts": {
-      "China": 10
+      "Singapore": 5,
+      "China": 15,
+      "Hong Kong": 4,
+      "United States of America": 6
     }
   }
 }
