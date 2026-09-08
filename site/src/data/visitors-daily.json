@@ -10318,11 +10318,6 @@
   },
   "2026-09-08": {
     "final": false,
-    "counts": {
-      "Singapore": 1,
-      "China": 9,
-      "Hong Kong": 3,
-      "United States of America": 1
-    }
+    "counts": {}
   }
 }
