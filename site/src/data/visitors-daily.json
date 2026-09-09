@@ -10333,6 +10333,8 @@
   },
   "2026-09-09": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "Singapore": 1
+    }
   }
 }
