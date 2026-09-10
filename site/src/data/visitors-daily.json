@@ -10332,7 +10332,7 @@
     }
   },
   "2026-09-09": {
-    "final": false,
+    "final": true,
     "counts": {
       "Germany": 3,
       "Brazil": 1,
@@ -10341,5 +10341,9 @@
       "Hong Kong": 8,
       "United States of America": 2
     }
+  },
+  "2026-09-10": {
+    "final": false,
+    "counts": {}
   }
 }
