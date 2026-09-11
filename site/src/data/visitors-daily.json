@@ -10343,7 +10343,7 @@
     }
   },
   "2026-09-10": {
-    "final": false,
+    "final": true,
     "counts": {
       "Japan": 2,
       "Singapore": 14,
@@ -10352,5 +10352,9 @@
       "United States of America": 8,
       "IQ": 1
     }
+  },
+  "2026-09-11": {
+    "final": false,
+    "counts": {}
   }
 }
