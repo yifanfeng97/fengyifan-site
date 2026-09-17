@@ -16,8 +16,8 @@ export const news: NewsItem[] = [
   {
     date: { en: 'Sep. 2026', zh: '2026.09' },
     html: {
-      en: 'Survey <span class="hl">"Hypergraph Neural Networks: Theoretical Foundations and Applications"</span> accepted by <span class="hl">IEEE TPAMI</span> (co-corresponding author).',
-      zh: '综述<span class="hl">《Hypergraph Neural Networks: Theoretical Foundations and Applications》</span>被 <span class="hl">IEEE TPAMI</span> 录用（共同通讯作者）。',
+      en: 'Survey <span class="hl">"Hypergraph Neural Networks: Theoretical Foundations and Applications"</span> accepted by <span class="hl">IEEE TPAMI</span>.',
+      zh: '综述<span class="hl">《Hypergraph Neural Networks: Theoretical Foundations and Applications》</span>被 <span class="hl">IEEE TPAMI</span> 录用。',
     },
     badge: 'IEEE TPAMI',
   },
