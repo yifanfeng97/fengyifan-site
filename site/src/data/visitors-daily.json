@@ -10419,6 +10419,11 @@
   },
   "2026-09-17": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "Singapore": 8,
+      "China": 1,
+      "Hong Kong": 15,
+      "United States of America": 2
+    }
   }
 }
