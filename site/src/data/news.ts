@@ -14,6 +14,22 @@ export interface NewsItem {
 // their months are approximate when only the year is known.
 export const news: NewsItem[] = [
   {
+    date: { en: 'Sep. 2026', zh: '2026.09' },
+    html: {
+      en: 'Survey <span class="hl">"Hypergraph Neural Networks: Theoretical Foundations and Applications"</span> accepted by <span class="hl">IEEE TPAMI</span> (co-corresponding author).',
+      zh: '综述<span class="hl">《Hypergraph Neural Networks: Theoretical Foundations and Applications》</span>被 <span class="hl">IEEE TPAMI</span> 录用（共同通讯作者）。',
+    },
+    badge: 'IEEE TPAMI',
+  },
+  {
+    date: { en: 'Sep. 2026', zh: '2026.09' },
+    html: {
+      en: '<a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener"><span class="hl">Hyper-Extract</span></a> surpassed <span class="hl">4K+ Stars</span> with the v0.10 series release (JSON-LD &amp; Cypher exports, Gemini, MCP parity, Scoped Chat).',
+      zh: '<a href="https://github.com/yifanfeng97/Hyper-Extract" target="_blank" rel="noopener"><span class="hl">Hyper-Extract</span></a> 星标突破 <span class="hl">4K</span>，发布 v0.10 系列更新（JSON-LD/Cypher 导出、Gemini、MCP 对齐、Scoped Chat 等）。',
+    },
+    badge: '4K+ Stars',
+  },
+  {
     date: { en: 'Aug. 2026', zh: '2026.08' },
     html: {
       en: 'Awarded an <span class="hl">NSFC General Program</span> grant as Principal Investigator.',

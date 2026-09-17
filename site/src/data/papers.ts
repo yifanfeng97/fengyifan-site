@@ -30,6 +30,32 @@ export interface Paper {
 // ---------------------------------------------------------------------------
 export const firstAuthorPapers: Paper[] = [
   {
+    title: 'Hypergraph Neural Networks: Theoretical Foundations and Applications',
+    authorsHtml:
+      'Yue Gao, <b>Yifan Feng*</b>, Xiangmin Han, Juan Wang, Shaoyi Du, Shihui Ying*',
+    venue: 'IEEE TPAMI · 2026',
+    year: 2026,
+    note: { en: 'Survey', zh: '综述' },
+    thumb: 'HGNN Survey',
+    first: true,
+    links: [],
+  },
+  {
+    title:
+      'Hyper-Fold: Exploring the Expressive Limit of Sequence-Geometry Learning for Proteins via Hypergraph Modeling',
+    authorsHtml:
+      '<b>Yifan Feng</b>, Guanjie Cheng, Shihui Ying, Shaoyi Du, Yue Gao',
+    venue: 'arXiv · 2026',
+    year: 2026,
+    thumb: 'Hyper-Fold',
+    first: true,
+    selected: true,
+    links: [
+      { label: 'PDF', href: 'https://arxiv.org/pdf/2608.29207' },
+      { label: 'Code', href: 'https://github.com/yifanfeng97/Hyper-Fold' },
+    ],
+  },
+  {
     title:
       'Hyper-RAG: Combating LLM Hallucinations using Hypergraph-Driven Retrieval-Augmented Generation',
     authorsHtml:
@@ -55,7 +81,6 @@ export const firstAuthorPapers: Paper[] = [
     note: { en: 'Oral Presentation', zh: 'Oral 报告' },
     thumb: 'Hyper-KGGen',
     first: true,
-    selected: true,
     links: [
       { label: 'PDF', href: 'https://dl.acm.org/doi/10.1145/3770855.3818198' },
       { label: 'Code', href: 'https://github.com/Rizrock/Hyper-KGGen' },
