@@ -10450,7 +10450,7 @@
     }
   },
   "2026-09-20": {
-    "final": false,
+    "final": true,
     "counts": {
       "Singapore": 5,
       "China": 15,
@@ -10458,5 +10458,9 @@
       "United States of America": 7,
       "Saudi Arabia": 1
     }
+  },
+  "2026-09-21": {
+    "final": false,
+    "counts": {}
   }
 }
