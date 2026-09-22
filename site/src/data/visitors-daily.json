@@ -10473,7 +10473,13 @@
   "2026-09-22": {
     "final": false,
     "counts": {
-      "Singapore": 100
+      "Japan": 5,
+      "Singapore": 6,
+      "China": 5,
+      "Canada": 1,
+      "Hong Kong": 2,
+      "United States of America": 2,
+      "Taiwan": 1
     }
   }
 }
