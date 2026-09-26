@@ -10502,7 +10502,7 @@
     }
   },
   "2026-09-25": {
-    "final": false,
+    "final": true,
     "counts": {
       "United Arab Emirates": 1,
       "France": 1,
@@ -10514,5 +10514,9 @@
       "Hong Kong": 4,
       "United States of America": 4
     }
+  },
+  "2026-09-26": {
+    "final": false,
+    "counts": {}
   }
 }
