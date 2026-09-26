@@ -3,7 +3,7 @@
   "United States of America": 1816,
   "Switzerland": 103,
   "Italy": 74,
-  "Hong Kong": 1037,
+  "Hong Kong": 1039,
   "Australia": 159,
   "Germany": 222,
   "Singapore": 921,
@@ -48,5 +48,6 @@
   "Malaysia": 2,
   "Saudi Arabia": 1,
   "Argentina": 1,
-  "Indonesia": 1
+  "Indonesia": 1,
+  "EC": 1
 }
