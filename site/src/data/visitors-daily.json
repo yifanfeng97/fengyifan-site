@@ -10530,6 +10530,8 @@
   },
   "2026-09-27": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "China": 1
+    }
   }
 }
