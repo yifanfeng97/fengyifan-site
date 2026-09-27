@@ -10516,7 +10516,7 @@
     }
   },
   "2026-09-26": {
-    "final": false,
+    "final": true,
     "counts": {
       "Japan": 2,
       "Brazil": 1,
@@ -10527,5 +10527,9 @@
       "United States of America": 12,
       "Taiwan": 2
     }
+  },
+  "2026-09-27": {
+    "final": false,
+    "counts": {}
   }
 }
