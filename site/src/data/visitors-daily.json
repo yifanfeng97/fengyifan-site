@@ -10529,7 +10529,7 @@
     }
   },
   "2026-09-27": {
-    "final": false,
+    "final": true,
     "counts": {
       "France": 1,
       "Singapore": 10,
@@ -10537,5 +10537,9 @@
       "Hong Kong": 1,
       "United States of America": 2
     }
+  },
+  "2026-09-28": {
+    "final": false,
+    "counts": {}
   }
 }
