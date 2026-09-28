@@ -10541,9 +10541,13 @@
   "2026-09-28": {
     "final": false,
     "counts": {
-      "Japan": 3,
-      "Singapore": 1,
-      "United States of America": 11
+      "Japan": 14,
+      "Singapore": 11,
+      "Turkey": 1,
+      "China": 2,
+      "KE": 1,
+      "Hong Kong": 6,
+      "United States of America": 12
     }
   }
 }
