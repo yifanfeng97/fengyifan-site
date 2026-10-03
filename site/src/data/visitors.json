@@ -1,17 +1,17 @@
 {
-  "China": 4852,
-  "United States of America": 1864,
+  "China": 4867,
+  "United States of America": 1865,
   "Switzerland": 103,
   "Italy": 74,
   "Hong Kong": 1050,
   "Australia": 161,
   "Germany": 222,
-  "Singapore": 984,
+  "Singapore": 986,
   "Brazil": 40,
   "Canada": 157,
   "Netherlands": 106,
   "South Korea": 194,
-  "Japan": 451,
+  "Japan": 452,
   "Denmark": 38,
   "India": 134,
   "New Zealand": 19,
@@ -47,8 +47,9 @@
   "Colombia": 1,
   "Malaysia": 2,
   "Saudi Arabia": 1,
-  "Argentina": 1,
+  "Argentina": 2,
   "Indonesia": 1,
   "EC": 1,
-  "KE": 1
+  "KE": 1,
+  "BD": 1
 }

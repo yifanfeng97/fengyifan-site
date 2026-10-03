@@ -10592,11 +10592,13 @@
   "2026-10-03": {
     "final": false,
     "counts": {
-      "Japan": 5,
+      "BD": 1,
+      "Japan": 6,
       "France": 1,
-      "Singapore": 1,
-      "China": 1,
-      "United States of America": 2
+      "Singapore": 3,
+      "Argentina": 1,
+      "China": 16,
+      "United States of America": 3
     }
   }
 }
