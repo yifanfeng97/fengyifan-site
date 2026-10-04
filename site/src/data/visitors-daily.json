@@ -10604,11 +10604,11 @@
   "2026-10-04": {
     "final": false,
     "counts": {
-      "Japan": 1,
-      "Singapore": 1,
-      "China": 4,
-      "Hong Kong": 4,
-      "United States of America": 1
+      "Japan": 2,
+      "Singapore": 7,
+      "China": 9,
+      "Hong Kong": 5,
+      "United States of America": 4
     }
   }
 }
