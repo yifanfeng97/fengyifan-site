@@ -10615,9 +10615,10 @@
   "2026-10-05": {
     "final": false,
     "counts": {
-      "Singapore": 1,
-      "China": 2,
-      "United States of America": 1
+      "Japan": 1,
+      "Singapore": 2,
+      "China": 20,
+      "United States of America": 3
     }
   }
 }
