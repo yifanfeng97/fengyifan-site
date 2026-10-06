@@ -10623,6 +10623,12 @@
   },
   "2026-10-06": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "Australia": 1,
+      "Singapore": 3,
+      "China": 10,
+      "Hong Kong": 2,
+      "United States of America": 1
+    }
   }
 }
