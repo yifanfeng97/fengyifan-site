@@ -10634,10 +10634,12 @@
   "2026-10-07": {
     "final": false,
     "counts": {
-      "Singapore": 1,
-      "China": 1,
+      "Germany": 4,
+      "Singapore": 4,
+      "China": 2,
       "Hong Kong": 1,
-      "United States of America": 2
+      "United States of America": 3,
+      "United Kingdom": 1
     }
   }
 }
