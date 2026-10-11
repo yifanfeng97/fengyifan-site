@@ -10675,7 +10675,11 @@
   "2026-10-11": {
     "final": false,
     "counts": {
-      "China": 2,
+      "Japan": 2,
+      "France": 1,
+      "Singapore": 3,
+      "China": 3,
+      "United States of America": 5,
       "Taiwan": 1
     }
   }
