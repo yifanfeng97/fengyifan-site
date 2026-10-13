@@ -10684,15 +10684,21 @@
     }
   },
   "2026-10-12": {
-    "final": false,
+    "final": true,
     "counts": {
       "Australia": 2,
       "Japan": 6,
-      "Singapore": 5,
+      "Singapore": 6,
       "China": 53,
       "Hong Kong": 3,
       "United States of America": 10,
       "Taiwan": 4
+    }
+  },
+  "2026-10-13": {
+    "final": false,
+    "counts": {
+      "China": 1
     }
   }
 }
