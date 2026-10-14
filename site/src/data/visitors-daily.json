@@ -10707,9 +10707,11 @@
   "2026-10-14": {
     "final": false,
     "counts": {
-      "Japan": 5,
-      "China": 3,
-      "Hong Kong": 4
+      "Japan": 8,
+      "Singapore": 1,
+      "China": 4,
+      "Hong Kong": 6,
+      "South Korea": 1
     }
   }
 }
