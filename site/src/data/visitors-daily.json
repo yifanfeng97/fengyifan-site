@@ -10715,13 +10715,20 @@
     }
   },
   "2026-10-15": {
-    "final": false,
+    "final": true,
     "counts": {
       "Japan": 3,
       "Singapore": 5,
       "China": 9,
       "Hong Kong": 3,
       "United States of America": 13
+    }
+  },
+  "2026-10-16": {
+    "final": false,
+    "counts": {
+      "China": 11,
+      "United States of America": 1
     }
   }
 }
