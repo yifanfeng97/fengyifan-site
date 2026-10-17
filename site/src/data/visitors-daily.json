@@ -10725,7 +10725,7 @@
     }
   },
   "2026-10-16": {
-    "final": false,
+    "final": true,
     "counts": {
       "Japan": 18,
       "Brazil": 1,
@@ -10735,6 +10735,13 @@
       "Netherlands": 1,
       "Hong Kong": 11,
       "United States of America": 6
+    }
+  },
+  "2026-10-17": {
+    "final": false,
+    "counts": {
+      "China": 7,
+      "Hong Kong": 3
     }
   }
 }
