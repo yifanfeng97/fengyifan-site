@@ -10751,10 +10751,11 @@
     "final": false,
     "counts": {
       "Japan": 1,
-      "Singapore": 3,
-      "China": 9,
+      "Singapore": 4,
+      "China": 11,
       "Canada": 1,
-      "United States of America": 3
+      "Hong Kong": 13,
+      "United States of America": 6
     }
   }
 }
