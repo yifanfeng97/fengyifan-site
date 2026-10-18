@@ -10750,9 +10750,11 @@
   "2026-10-18": {
     "final": false,
     "counts": {
-      "Singapore": 1,
-      "China": 4,
-      "United States of America": 1
+      "Japan": 1,
+      "Singapore": 3,
+      "China": 9,
+      "Canada": 1,
+      "United States of America": 3
     }
   }
 }
