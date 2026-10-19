@@ -10748,7 +10748,7 @@
     }
   },
   "2026-10-18": {
-    "final": false,
+    "final": true,
     "counts": {
       "Japan": 1,
       "Singapore": 4,
@@ -10756,6 +10756,13 @@
       "Canada": 1,
       "Hong Kong": 13,
       "United States of America": 6
+    }
+  },
+  "2026-10-19": {
+    "final": false,
+    "counts": {
+      "China": 5,
+      "United States of America": 3
     }
   }
 }
