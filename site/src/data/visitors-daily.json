@@ -10770,11 +10770,12 @@
   "2026-10-20": {
     "final": false,
     "counts": {
-      "Japan": 3,
+      "Japan": 5,
       "Singapore": 4,
-      "China": 9,
-      "Hong Kong": 10,
-      "United States of America": 16
+      "China": 17,
+      "Hong Kong": 11,
+      "United States of America": 18,
+      "Austria": 3
     }
   }
 }
