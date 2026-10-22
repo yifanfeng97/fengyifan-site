@@ -10790,6 +10790,12 @@
   },
   "2026-10-22": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "Japan": 1,
+      "Singapore": 3,
+      "China": 72,
+      "Hong Kong": 4,
+      "United States of America": 1
+    }
   }
 }
