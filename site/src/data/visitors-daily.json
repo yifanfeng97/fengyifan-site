@@ -10779,7 +10779,7 @@
     }
   },
   "2026-10-21": {
-    "final": false,
+    "final": true,
     "counts": {
       "Singapore": 12,
       "China": 5,
@@ -10787,5 +10787,9 @@
       "United States of America": 2,
       "United Kingdom": 1
     }
+  },
+  "2026-10-22": {
+    "final": false,
+    "counts": {}
   }
 }
