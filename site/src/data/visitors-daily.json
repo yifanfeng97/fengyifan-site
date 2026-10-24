@@ -10810,8 +10810,9 @@
   "2026-10-24": {
     "final": false,
     "counts": {
-      "Singapore": 6,
-      "China": 10,
+      "Singapore": 8,
+      "China": 11,
+      "Taiwan": 1,
       "South Korea": 2
     }
   }
