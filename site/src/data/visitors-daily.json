@@ -10799,12 +10799,20 @@
     }
   },
   "2026-10-23": {
-    "final": false,
+    "final": true,
     "counts": {
       "France": 1,
       "Singapore": 4,
       "China": 11,
       "United States of America": 1
+    }
+  },
+  "2026-10-24": {
+    "final": false,
+    "counts": {
+      "Singapore": 2,
+      "China": 2,
+      "South Korea": 2
     }
   }
 }
