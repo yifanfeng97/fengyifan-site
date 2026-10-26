@@ -10828,8 +10828,11 @@
   "2026-10-26": {
     "final": false,
     "counts": {
-      "China": 1,
-      "Hong Kong": 1
+      "Japan": 1,
+      "Singapore": 1,
+      "China": 10,
+      "Hong Kong": 1,
+      "United States of America": 4
     }
   }
 }
