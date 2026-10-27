@@ -10839,7 +10839,11 @@
     "final": false,
     "counts": {
       "Japan": 3,
-      "China": 10
+      "Singapore": 6,
+      "China": 18,
+      "Netherlands": 2,
+      "Hong Kong": 1,
+      "United States of America": 3
     }
   }
 }
