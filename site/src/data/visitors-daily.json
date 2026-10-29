@@ -10861,9 +10861,11 @@
   "2026-10-29": {
     "final": false,
     "counts": {
-      "China": 11,
-      "Hong Kong": 1,
-      "United States of America": 4
+      "Singapore": 4,
+      "China": 13,
+      "Hong Kong": 2,
+      "United States of America": 10,
+      "Switzerland": 1
     }
   }
 }
