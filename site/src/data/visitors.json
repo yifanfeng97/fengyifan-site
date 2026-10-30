@@ -1,12 +1,12 @@
 {
-  "China": 5290,
-  "United States of America": 1999,
+  "China": 5292,
+  "United States of America": 2000,
   "Switzerland": 104,
   "Italy": 74,
-  "Hong Kong": 1149,
+  "Hong Kong": 1150,
   "Australia": 164,
   "Germany": 227,
-  "Singapore": 1153,
+  "Singapore": 1154,
   "Brazil": 41,
   "Canada": 159,
   "Netherlands": 109,
@@ -51,5 +51,6 @@
   "Indonesia": 1,
   "EC": 1,
   "KE": 1,
-  "BD": 1
+  "BD": 1,
+  "Philippines": 1
 }
