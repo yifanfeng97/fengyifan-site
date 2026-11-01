@@ -10893,7 +10893,10 @@
   "2026-11-01": {
     "final": false,
     "counts": {
-      "Singapore": 1
+      "Japan": 1,
+      "Singapore": 3,
+      "Macau": 7,
+      "China": 8
     }
   }
 }
