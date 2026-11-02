@@ -10891,12 +10891,20 @@
     }
   },
   "2026-11-01": {
-    "final": false,
+    "final": true,
     "counts": {
       "Japan": 1,
       "Singapore": 4,
       "Macau": 7,
       "China": 8
+    }
+  },
+  "2026-11-02": {
+    "final": false,
+    "counts": {
+      "Singapore": 3,
+      "China": 6,
+      "United States of America": 1
     }
   }
 }
