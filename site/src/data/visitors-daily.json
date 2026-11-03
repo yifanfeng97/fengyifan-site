@@ -10900,10 +10900,18 @@
     }
   },
   "2026-11-02": {
-    "final": false,
+    "final": true,
     "counts": {
       "Singapore": 4,
       "China": 6,
+      "United States of America": 1
+    }
+  },
+  "2026-11-03": {
+    "final": false,
+    "counts": {
+      "Singapore": 1,
+      "China": 1,
       "United States of America": 1
     }
   }
