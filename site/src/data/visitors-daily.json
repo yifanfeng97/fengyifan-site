@@ -10926,13 +10926,22 @@
     }
   },
   "2026-11-05": {
-    "final": false,
+    "final": true,
     "counts": {
       "Singapore": 5,
-      "China": 5,
-      "Hong Kong": 20,
-      "United States of America": 24,
+      "China": 6,
+      "Hong Kong": 21,
+      "United States of America": 25,
       "India": 1
+    }
+  },
+  "2026-11-06": {
+    "final": false,
+    "counts": {
+      "Brazil": 1,
+      "Singapore": 8,
+      "China": 3,
+      "United Kingdom": 4
     }
   }
 }
