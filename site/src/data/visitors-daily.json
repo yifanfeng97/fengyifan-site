@@ -10957,8 +10957,14 @@
   "2026-11-08": {
     "final": false,
     "counts": {
+      "Australia": 5,
+      "Japan": 1,
+      "Nigeria": 1,
       "Singapore": 4,
-      "China": 6,
+      "China": 10,
+      "KE": 1,
+      "Hong Kong": 1,
+      "United States of America": 12,
       "Taiwan": 1
     }
   }
