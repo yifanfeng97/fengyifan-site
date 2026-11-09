@@ -10955,17 +10955,25 @@
     }
   },
   "2026-11-08": {
-    "final": false,
+    "final": true,
     "counts": {
       "Australia": 5,
       "Japan": 1,
       "Nigeria": 1,
-      "Singapore": 5,
-      "China": 14,
+      "Singapore": 6,
+      "China": 15,
       "KE": 1,
       "Hong Kong": 1,
       "United States of America": 12,
       "Taiwan": 1
+    }
+  },
+  "2026-11-09": {
+    "final": false,
+    "counts": {
+      "Singapore": 1,
+      "China": 9,
+      "United States of America": 7
     }
   }
 }
