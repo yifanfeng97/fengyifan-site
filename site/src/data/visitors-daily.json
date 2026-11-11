@@ -10979,7 +10979,7 @@
     }
   },
   "2026-11-10": {
-    "final": false,
+    "final": true,
     "counts": {
       "Australia": 3,
       "Japan": 5,
@@ -10988,6 +10988,13 @@
       "Hong Kong": 1,
       "United States of America": 1,
       "United Kingdom": 1
+    }
+  },
+  "2026-11-11": {
+    "final": false,
+    "counts": {
+      "China": 4,
+      "United States of America": 4
     }
   }
 }
