@@ -10999,14 +10999,20 @@
     }
   },
   "2026-11-12": {
-    "final": false,
+    "final": true,
     "counts": {
       "Australia": 1,
-      "Singapore": 5,
-      "China": 6,
+      "Singapore": 6,
+      "China": 8,
       "Hong Kong": 3,
-      "United States of America": 2,
+      "United States of America": 3,
       "Austria": 1
+    }
+  },
+  "2026-11-13": {
+    "final": false,
+    "counts": {
+      "China": 2
     }
   }
 }
