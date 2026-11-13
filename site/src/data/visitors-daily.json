@@ -11012,7 +11012,10 @@
   "2026-11-13": {
     "final": false,
     "counts": {
-      "China": 2
+      "Singapore": 4,
+      "China": 9,
+      "United States of America": 13,
+      "South Korea": 4
     }
   }
 }
