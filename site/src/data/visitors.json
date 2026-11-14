@@ -1,6 +1,6 @@
 {
-  "China": 5443,
-  "United States of America": 2104,
+  "China": 5451,
+  "United States of America": 2116,
   "Switzerland": 104,
   "Italy": 75,
   "Hong Kong": 1192,
@@ -53,5 +53,6 @@
   "KE": 2,
   "BD": 1,
   "Philippines": 1,
-  "Nigeria": 1
+  "Nigeria": 1,
+  "DO": 1
 }
