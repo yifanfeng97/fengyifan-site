@@ -11029,6 +11029,10 @@
   },
   "2026-11-15": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "France": 1,
+      "China": 3,
+      "United States of America": 2
+    }
   }
 }
