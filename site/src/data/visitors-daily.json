@@ -11030,13 +11030,15 @@
   "2026-11-15": {
     "final": false,
     "counts": {
-      "Japan": 3,
+      "Japan": 11,
       "France": 1,
-      "Singapore": 2,
+      "Singapore": 3,
       "China": 9,
       "Canada": 1,
       "Hong Kong": 5,
-      "United States of America": 2
+      "United States of America": 2,
+      "Switzerland": 1,
+      "South Korea": 1
     }
   }
 }
