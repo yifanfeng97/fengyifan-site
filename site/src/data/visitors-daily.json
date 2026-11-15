@@ -11019,11 +11019,16 @@
     }
   },
   "2026-11-14": {
-    "final": false,
+    "final": true,
     "counts": {
       "China": 11,
-      "United States of America": 12,
-      "DO": 1
+      "United States of America": 15,
+      "DO": 1,
+      "South Korea": 1
     }
+  },
+  "2026-11-15": {
+    "final": false,
+    "counts": {}
   }
 }
