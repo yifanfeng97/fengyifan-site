@@ -11054,7 +11054,12 @@
   "2026-11-17": {
     "final": false,
     "counts": {
-      "Japan": 3
+      "Japan": 3,
+      "Singapore": 1,
+      "China": 9,
+      "Ukraine": 1,
+      "Hong Kong": 1,
+      "United States of America": 5
     }
   }
 }
