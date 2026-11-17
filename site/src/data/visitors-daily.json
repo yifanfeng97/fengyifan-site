@@ -11042,12 +11042,19 @@
     }
   },
   "2026-11-16": {
-    "final": false,
+    "final": true,
     "counts": {
       "Vietnam": 1,
       "Japan": 6,
-      "China": 23,
-      "United States of America": 5
+      "China": 24,
+      "Netherlands": 1,
+      "United States of America": 6
+    }
+  },
+  "2026-11-17": {
+    "final": false,
+    "counts": {
+      "Japan": 3
     }
   }
 }
