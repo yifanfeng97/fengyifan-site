@@ -11095,7 +11095,12 @@
   "2026-11-21": {
     "final": false,
     "counts": {
-      "Hong Kong": 10
+      "UZ": 1,
+      "Japan": 1,
+      "France": 1,
+      "Singapore": 4,
+      "China": 8,
+      "Hong Kong": 12
     }
   }
 }
