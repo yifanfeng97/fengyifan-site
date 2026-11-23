@@ -11117,7 +11117,11 @@
   "2026-11-23": {
     "final": false,
     "counts": {
-      "Hong Kong": 2
+      "Japan": 1,
+      "Singapore": 1,
+      "China": 1,
+      "Hong Kong": 2,
+      "United States of America": 2
     }
   }
 }
