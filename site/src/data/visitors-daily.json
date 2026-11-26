@@ -11147,6 +11147,9 @@
   },
   "2026-11-26": {
     "final": false,
-    "counts": {}
+    "counts": {
+      "China": 11,
+      "Indonesia": 1
+    }
   }
 }
