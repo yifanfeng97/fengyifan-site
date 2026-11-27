@@ -11156,10 +11156,11 @@
   "2026-11-27": {
     "final": false,
     "counts": {
-      "Singapore": 4,
-      "China": 4,
-      "United States of America": 3,
-      "Taiwan": 3
+      "Singapore": 6,
+      "China": 6,
+      "Netherlands": 1,
+      "United States of America": 4,
+      "Taiwan": 7
     }
   }
 }
