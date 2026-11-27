@@ -11146,11 +11146,20 @@
     }
   },
   "2026-11-26": {
-    "final": false,
+    "final": true,
     "counts": {
       "China": 18,
       "Indonesia": 1,
       "United States of America": 1
+    }
+  },
+  "2026-11-27": {
+    "final": false,
+    "counts": {
+      "Singapore": 4,
+      "China": 4,
+      "United States of America": 3,
+      "Taiwan": 3
     }
   }
 }
